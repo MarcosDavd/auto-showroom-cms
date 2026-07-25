@@ -1,0 +1,15 @@
+# Node / npm
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Variables de entorno
+.env
+*.env
+
+# Build de producción
+client/dist/
+server/dist/
+
+# Logs
+*.log
