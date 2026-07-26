@@ -1,5 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require('@prisma/adapter-pg');
+const { uploadImage } = require("../services/cloudinary.service");
+const fs = require('fs/promises');
 require('dotenv').config();
 
 const adapter = new PrismaPg({
@@ -8,6 +10,89 @@ const adapter = new PrismaPg({
 
 const prisma = new PrismaClient({ adapter });
 
+
+const createCar = async (req, res) => {
+    try {
+        const {
+            marca,
+            modelo,
+            anio,
+            kilometraje,
+            patente,
+            precio,
+            descripcion
+        } = req.body;
+
+        if (! descripcion || !marca || !modelo || !anio || !kilometraje || !patente || !precio) {
+            return res.status(400).json({
+                message: "Faltan datos obligatorios para crear el auto",
+                missing: {
+                    marca: !marca,
+                    modelo: !modelo,
+                    anio: !anio,
+                    kilometraje: !kilometraje,
+                    patente: !patente,
+                    precio: !precio,
+                    descripcion: !descripcion
+                }
+            });
+        }
+
+        console.log(req.files);
+        console.log(req.body);
+        const files = req.files || [];
+        const imageUrls = [];
+
+        if (files.length > 0) {
+            const uploadResults = await Promise.all(
+                files.map((file) => uploadImage(file.path))
+            );
+
+            uploadResults.forEach((result) => {
+                if (result?.secure_url) {
+                    imageUrls.push(result.secure_url);
+                }
+            });
+
+            await Promise.all(files.map((file) => fs.unlink(file.path)));
+        }
+        const existingCar = await prisma.auto.findUnique({
+            where: {
+                patente: patente
+            }
+        });
+        if (existingCar) {
+            return res.status(409).json({
+                success: false,
+                message:"Patente ya registrada",
+            })
+        }
+        const newCar = await prisma.auto.create({
+            data: {
+                marca,
+                modelo,
+                anio: parseInt(anio, 10),
+                kilometraje: parseInt(kilometraje, 10),
+                patente,
+                precio: parseFloat(precio),
+                descripcion,
+                urlImagen: imageUrls,
+            }
+        });
+
+        return res.status(201).json({
+            message: "Auto creado correctamente",
+            data: newCar
+        });
+
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error en el servidor"
+        });
+    }
+};
 const getAllCars = async (req,res)=>{
     try {
         const cars = await prisma.auto.findMany();
@@ -22,35 +107,6 @@ const getAllCars = async (req,res)=>{
         });
     }
 }
-const createCar = async (req, res) => {
-    try {
-        console.log('Datos recibidos para crear un auto:', req.body);
-        const { marca, modelo, anio, kilometraje, urlImagen, patente, precio } = req.body;
-
-        const newCar = await prisma.auto.create({
-            data: {
-                marca,
-                modelo,
-                anio: parseInt(anio, 10),
-                kilometraje: parseInt(kilometraje, 10),
-                urlImagen,
-                patente,
-                precio: parseFloat(precio)
-            }
-        });
-
-        return res.status(201).json({
-            message: 'Auto creado exitosamente',
-            data: newCar
-        });
-    } catch (error) {
-        return res.status(500).json({
-            message: 'Error al crear el auto',
-            error: error.message
-        });
-    }
-};
-
 module.exports = {
     createCar,
     getAllCars

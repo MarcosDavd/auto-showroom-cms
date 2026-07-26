@@ -17,7 +17,7 @@ model Auto {
   patente     String   @unique // La patente debe ser única
   precio      Float
   creadoEn    DateTime @default(now())
-
+  descripcion String?
   @@map("autos")
 }
 datasource db {
