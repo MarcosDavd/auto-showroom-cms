@@ -1,0 +1,58 @@
+
+
+
+
+
+/* ///////////// //////////////////////////////////////////////////////////////
+CAR BANNER CSS
+///////////////////////////////////////////////////////////////////////////////*/
+
+.message-banner{
+    width: 100%;
+    height: clamp(300px,30vh,500px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #fefefe 40%,
+        #cecece 100%
+    );
+    font-family: "Stack Sans Headline", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: rgb(75, 75, 75);
+    
+} 
+.message-target{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    width: clamp(200px,35vw,500px);
+}   
+.message-banner h3{
+    font-size: clamp(20px,2vw,35px);
+    font-weight: 800;
+}
+.message-icon{
+    height: 3.2ch;
+    width: 3.2ch;
+}
+.message-banner p{
+    font-size: clamp(10px,1.2vw,20px) ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+.location{
+    margin: 300px 0 100px 0;
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #242a36;
+}
+.location p{
+    color: white;
+    font-size: 2.5rem;
+    font-family: "Stack Sans Headline", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.google-map{
+    filter:
+        invert(1)
+        saturate(12)
+        hue-rotate(400deg)
+        grayscale(100%)
+        contrast(1.10)
+        brightness(.95);
+    width: 50%;
+    height: 80%;
+}
+.google-map iframe{
+    border-radius: 60px;
+    width: 100%;
+    height: 100%;
+}
