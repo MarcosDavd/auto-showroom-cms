@@ -1,7 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require('@prisma/adapter-pg');
 const { uploadImage } = require("../services/cloudinary.service");
-const fs = require('fs/promises');
 require('dotenv').config();
 
 const adapter = new PrismaPg({
@@ -45,7 +44,7 @@ const createCar = async (req, res) => {
 
         if (files.length > 0) {
             const uploadResults = await Promise.all(
-                files.map((file) => uploadImage(file.path))
+                files.map((file) => uploadImage(file))
             );
 
             uploadResults.forEach((result) => {
@@ -53,8 +52,6 @@ const createCar = async (req, res) => {
                     imageUrls.push(result.secure_url);
                 }
             });
-
-            await Promise.all(files.map((file) => fs.unlink(file.path)));
         }
         const existingCar = await prisma.auto.findUnique({
             where: {

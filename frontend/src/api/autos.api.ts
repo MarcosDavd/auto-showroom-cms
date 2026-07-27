@@ -1,6 +1,6 @@
 import type { CreateAutoDTO } from '../types/auto.type';
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/api/autos';
+const API_URL = 'http://localhost:5000/api/autos/crearAuto';
 export const createAuto = async (data:CreateAutoDTO) => {
     /* 
     FormData: Es un objeto especial del navegador diseñado 

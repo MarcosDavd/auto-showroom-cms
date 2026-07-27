@@ -13,3 +13,7 @@ server/dist/
 
 # Logs
 *.log
+
+# Archivos subidos localmente
+uploads/
+backend/uploads/
