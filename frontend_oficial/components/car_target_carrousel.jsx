@@ -4,15 +4,13 @@ import "./car_target_carrousel.css"
 
 function CarTargetComp({brand,model,year,price,urlImage}){
     return  <div className="car-target">
+                <img    src={urlImage}
+                        alt="carro-ejemplo" />
                 <div>
-                    <img    src={urlImage}
-                            alt="carro-ejemplo" />
-                    <button><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#ffffff"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
+                    <h2>{brand} - {model}</h2>
+                    <p>Año: {year}</p>
+                    <p>Costo: ${price}</p>
                 </div>
-                
-                <h2>{brand} {model}</h2>
-                <p>{year}</p>
-                <p>{price}</p>
             </div>
 }
 
@@ -57,7 +55,7 @@ export function TargetsCarrouselComp(){
         <> 
             
                 <div className="targets-container">
-                    <button className="button-car-carrousel" onClick={previous}>←</button>
+                    <button className="button-car-carrousel" onClick={previous}><svg className="button-prevnext" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"  fill="#ffffff"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
                     <div className="targets-carrousel" ref={carouselRef}>
                         {carTargetData.map((carInfo) =>(
                             <CarTargetComp 
@@ -73,7 +71,7 @@ export function TargetsCarrouselComp(){
                         
                     
                     </div>
-                     <button className="button-car-carrousel" onClick={next}>→</button>
+                     <button className="button-car-carrousel" onClick={next}><svg className="button-prevnext" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" fill="#ffffff"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></button>
                 </div> 
                 
 
