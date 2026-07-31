@@ -4,9 +4,9 @@ import { useState } from "react"
 
 function NavigationLinks(){
     return  <ul>
-                <li>Menú</li>
-                <li>Lolo</li>
-                <li>Acerquese</li>
+                <li>MENU</li>
+                <li>LOLO</li>
+                <li>ACERQUESE</li>
             </ul>
 }
 

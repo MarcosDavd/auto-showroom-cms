@@ -1,14 +1,21 @@
+'use client'
 import "./home.css"
-
+import { ObserverComp } from "./features"
 export function MessageBanner(){
-    return <section className="message-banner">
-                    <MessageTarget titulo=" Nuestros Servicios" texto="" icon={ServiceIcon} />
-                    <MessageTarget titulo=" Nuestro Compromiso" texto="" icon={CommitmentIcon} />
+    const params = ObserverComp();
+
+    return <section className="message-banner" ref={params.refContent}>
+                <div>
+                    <MessageTarget className="left" titulo=" Nuestros Servicios" texto="" icon={ServiceIcon} isChange={params.elementShowing} />
+                </div>
+                <div>
+                    <MessageTarget className="right" titulo=" Nuestro Compromiso" texto="" icon={CommitmentIcon} isChange={params.elementShowing}  />
+                </div>         
             </section>
 }
 
-function MessageTarget({titulo,texto, icon:Icon}){
-    return  <div className="message-target">
+function MessageTarget({titulo,texto, icon:Icon,isChange, className}){
+    return  <div className={`message-target ${className} ${isChange ? "visible" : ""}`}>
                 <h3>
                     <Icon/> 
                     {titulo}

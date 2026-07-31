@@ -26,15 +26,29 @@ CAR BANNER CSS
     color: rgb(75, 75, 75);
     
 } 
+.message-banner div{
+    overflow: hidden;
+}
 .message-target{
     display: flex;
     flex-direction: column;
     gap:15px;
     width: clamp(200px,35vw,500px);
+    transition: transform 1.5s cubic-bezier(0,1.01,.8,.99);
+    
 }   
+.message-target.left{
+    transform:translateX(35vw)
+}
+.message-target.right{
+    transform:translateX(-35vw)
+}
+.message-target.visible{
+    transform:translateX(0vw)
+}
 .message-banner h3{
     font-size: clamp(20px,2vw,35px);
-    font-weight: 800;
+    font-weight: 100;
 }
 .message-icon{
     height: 3.2ch;

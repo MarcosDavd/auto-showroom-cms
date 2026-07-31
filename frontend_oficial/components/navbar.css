@@ -34,7 +34,7 @@ ul{
     display: flex;
     gap: 80px;
     height: 100%;
-    font-family: "Stack Sans Headline", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
 }
@@ -42,8 +42,39 @@ ul{
     font-size:1.2rem;
     font-weight: 400;
     display: flex;
-    align-items: center;
+    position: relative;
+    align-items: center;    
 }
+.navbar ul li::after,.navbar ul li::before{  
+    content: "";
+    position: absolute;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom center;
+    width: 105%;
+    height: 2px;
+    background-color: white;
+    transition: transform 0.25s ease-out;
+    animation: lines-li-change-style linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 100px;
+}
+.navbar ul li::after{
+    bottom: -15px;
+}
+.navbar ul li::before{
+    top: -15px;
+}
+@keyframes lines-li-change-style{
+    to{
+        background-color: black;
+    }
+}
+.navbar ul li:hover::after,.navbar ul li:hover::before{
+    transform: scaleX(1);
+    transform-origin: bottom center;
+}
+
 .burger-button-style{
     fill: #ffffff;
     animation: navbar-change-style linear both;
@@ -97,9 +128,6 @@ ul{
         background-color: white;
         color: #000929;
         fill: #000000;
-        
-
-
     }
 }
 

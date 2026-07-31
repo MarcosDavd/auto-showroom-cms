@@ -25,13 +25,13 @@ button{
 
 .car-movingX{
     position: fixed;
-    top:87vh;
+    bottom:2vh;
     z-index: 2;
     animation:car-route 10s linear  forwards;
 }
 .car-movingY{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     animation:car-vibration 40ms linear 250  alternate,
                hide-car 0.5s cubic-bezier(1, 0.01, 0, 0.92) 10.3s forwards;
 }
@@ -40,7 +40,7 @@ button{
         right: max(1400px, 140vw);
     }
     to{
-        right:6%;
+        right:2%;
     }
 }
 @keyframes car-vibration{
@@ -65,13 +65,13 @@ button{
 
 
 .whatsapp-icon{
-    height: 100px;
+    height: 80px;
     width: 0px;
     animation:show-whatsapp 0.5s cubic-bezier(1, 0.01, 0, 0.92) 10.7s forwards
 }
 
 @keyframes show-whatsapp{
     to{
-        width: 100px;
+        width: 80px;
     }
 }
