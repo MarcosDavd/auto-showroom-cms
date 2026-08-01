@@ -13,17 +13,10 @@ CAR BANNER CSS
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: white;
-    background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #fefefe 40%,
-        #cecece 100%
-    );
     font-family: "Stack Sans Headline", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    color: rgb(75, 75, 75);
+    color: rgb(226, 226, 226);
     
 } 
 .message-banner div{
@@ -35,8 +28,25 @@ CAR BANNER CSS
     gap:15px;
     width: clamp(200px,35vw,500px);
     transition: transform 1.5s cubic-bezier(0,1.01,.8,.99);
-    
+    position: relative;
 }   
+.message-target::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom center;
+    width: 85%;
+    height: 1px;
+    background-color: white;
+    transition: transform 0.25s ease-out;
+    top: 90px;
+    left:10%;
+}
+.message-target:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom center;
+}
 .message-target.left{
     transform:translateX(35vw)
 }
@@ -47,8 +57,9 @@ CAR BANNER CSS
     transform:translateX(0vw)
 }
 .message-banner h3{
-    font-size: clamp(20px,2vw,35px);
-    font-weight: 100;
+    font-family: "Montserrat",sans-serif;
+    font-size: clamp(20px,3vw,35px);
+    font-weight: 400;
 }
 .message-icon{
     height: 3.2ch;
@@ -56,6 +67,7 @@ CAR BANNER CSS
 }
 .message-banner p{
     font-size: clamp(10px,1.2vw,20px) ;
+    font-weight: 100;
 }
 
 
