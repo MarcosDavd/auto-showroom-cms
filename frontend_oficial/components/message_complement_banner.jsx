@@ -145,7 +145,7 @@ const pathOne = `M5775 5093 c-16 -8 -37 -22 -46 -29 -12 -11 -21 -11 -47 -2 -27 1
                 0 -229 125 -211 248 3 23 9 42 13 42 3 0 35 -9 69 -20z`.replace(/\s+/g, " ").trim();
 
 
-function SvgCarThree(){
+export function SvgCarThree(){
     return <svg suppressHydrationWarning
                 version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="350px" height="350px" viewBox="0 0 1280.000000 813.000000"
@@ -154,7 +154,7 @@ function SvgCarThree(){
                 Created by potrace 1.15, written by Peter Selinger 2001-2017
                 </metadata>
                 <g transform="translate(0.000000,813.000000) scale(0.100000,-0.100000)"
-                fill="#9b9a9a" stroke="none">
+                stroke="none">
                 <path d="M5535 8120 c-646 -17 -1237 -43 -1819 -80 l-310 -20 -50 -42 c-321
                 -267 -611 -556 -820 -818 -188 -236 -296 -402 -514 -795 -80 -143 -146 -262
                 -148 -264 -2 -2 -15 0 -29 3 -43 11 -55 57 -55 205 0 146 -8 176 -54 190 -120
