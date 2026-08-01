@@ -4,7 +4,7 @@ import { ObserverComp } from "./features"
 export function MessageBanner(){
     const params = ObserverComp();
 
-    return <section className="message-banner" ref={params.refContent}>
+    return <section className={`message-banner ${params.elementShowing ? "visible" : ""}`} ref={params.refContent}>
                 <div>
                     <MessageTarget className="left" titulo=" NUESTROS SERVICIOS" texto="" icon={ServiceIcon} isChange={params.elementShowing} />
                 </div>

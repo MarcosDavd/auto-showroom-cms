@@ -34,7 +34,7 @@
     font-family: "dealership",sans-serif;
     font-weight: 300;
     font-size: clamp(15px,1.5vw,35px);
-    color: #ddb958;
+    
 }
 .login-container div{
     flex-direction: column;
