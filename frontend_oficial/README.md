@@ -60,7 +60,6 @@ npm run prisma:studio
 
 ## 6. Endpoints útiles
 
-- Health check: `http://localhost:3000/api/health`
 - Autos: `http://localhost:3000/api/autos/obtenerAutos`
 
 ## 7. Flujo recomendado
