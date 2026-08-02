@@ -26,13 +26,14 @@ async function getFetchData(url){
 
 export function TargetsCarrouselComp(){
     const [carTargetData, setCarTargetData] = useState([]);
-    useEffect (()=>{
-        async function loadFetch(){
-            const data = await getFetchData("http://localhost:5000/api/autos/obtenerAutos");        
-            setCarTargetData(data.data)
+    useEffect(() => {
+        async function loadFetch() {
+            const data = await getFetchData('/api/autos/obtenerAutos');
+            setCarTargetData(data.data || []);
         }
-        loadFetch()
-    },[])
+
+        loadFetch();
+    }, []);
     
 
     const carouselRef = useRef(null);

@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Auto Showroom CMS
 
-## Getting Started
+Guía rápida para iniciar el proyecto, Prisma, migraciones y seed.
 
-First, run the development server:
+## 1. Requisitos
+- Node.js 20+
+- PostgreSQL corriendo
+- Variable `DATABASE_URL` configurada
+
+## 2. Variables de entorno
+Crear un archivo `.env` en la raíz con algo como:
+
+```env
+DATABASE_URL="postgresql://postgres:postgrespassword@localhost:5433/mi_base_de_datos?schema=public"
+```
+
+## 3. Instalar dependencias
+
+```bash
+npm install
+```
+
+## 4. Iniciar la aplicación
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 5. Prisma
 
-## Learn More
+### Generar cliente
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx prisma generate
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Crear o aplicar migraciones
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npx prisma migrate dev
+```
 
-## Deploy on Vercel
+### Ejecutar seed
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run prisma:seed
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Ver la base en Prisma Studio
+
+```bash
+npm run prisma:studio
+```
+
+## 6. Endpoints útiles
+
+- Health check: `http://localhost:3000/api/health`
+- Autos: `http://localhost:3000/api/autos/obtenerAutos`
+
+## 7. Flujo recomendado
+
+```bash
+npm install
+npx prisma generate
+npx prisma migrate dev
+npm run prisma:seed
+npm run dev
+```
