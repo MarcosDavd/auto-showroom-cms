@@ -1,0 +1,54 @@
+.page-administration-login{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items:first baseline;
+    position: absolute;
+    z-index: 30;
+    background-color:rgb(29, 39, 61) ;
+}
+.login-container, .login-container div, .login-container button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container{
+    width: clamp(350px,35vw,1000px);
+    height: 60vh;
+    background-color: #454545;
+    position: fixed;
+    z-index: 31;
+    border-radius: 20px;
+    flex-direction: column;
+    gap: 50px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+.login-container svg{
+    width: 14vh;
+    height: 14vh;
+    fill: #f4c647;
+}
+.login-container h2{
+    font-family: "dealership",sans-serif;
+    font-weight: 300;
+    font-size: clamp(15px,1.5vw,35px);
+    
+}
+.login-container div{
+    flex-direction: column;
+    gap: 7px;  
+}
+.login-container div label{
+    font-family: "Montserrat",sans-serif;
+    font-weight: 500;
+}
+.login-container button{
+    background-color: #ad924a;
+    width: 14vw;
+    height: 5vh;
+    font-family: "Stack Sans Headline",sans-serif;
+    font-weight: 400;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}

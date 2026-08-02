@@ -1,0 +1,77 @@
+
+@font-face {
+    font-family: "dealership";
+    src: url("../fonts/title-car-font.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body{
+    background-color: #333333;
+    
+}
+button{
+    all: unset;
+}
+
+
+/*///////////////////////*/
+/* CAR-CONTACT CSS*/
+/*///////////////////////*/
+
+
+
+.car-movingX{
+    position: fixed;
+    bottom:2vh;
+    z-index: 2;
+    animation:car-route 10s linear  forwards;
+}
+.car-movingY{
+    width: 80px;
+    height: 80px;
+    animation:car-vibration 40ms linear 250  alternate,
+               hide-car 0.5s cubic-bezier(1, 0.01, 0, 0.92) 10.3s forwards;
+}
+@keyframes car-route{
+    from{
+        right: max(1400px, 140vw);
+    }
+    to{
+        right:2%;
+    }
+}
+@keyframes car-vibration{
+    from{
+        translate:0;
+    }
+    to{
+        translate:0 4px;
+    }
+}
+@keyframes hide-car{
+    to{
+        width: 0px;
+    }
+}
+
+/*//////////////////////////////////////////////*/
+/* WHATSAPP - CSS*/
+/*//////////////////////////////////////////////*/
+
+
+
+
+.whatsapp-icon{
+    height: 80px;
+    width: 0px;
+    animation:show-whatsapp 0.5s cubic-bezier(1, 0.01, 0, 0.92) 10.7s forwards
+}
+
+@keyframes show-whatsapp{
+    to{
+        width: 80px;
+    }
+}

@@ -1,0 +1,109 @@
+
+
+
+
+
+/* ///////////// //////////////////////////////////////////////////////////////
+CAR BANNER CSS
+///////////////////////////////////////////////////////////////////////////////*/
+
+.message-banner{
+    position: relative;
+    width: 100%;
+    height: clamp(300px,30vh,500px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: "Stack Sans Headline", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: rgb(226, 226, 226);
+    
+} 
+.message-banner::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    transform: scaleY(0);
+    transform-origin: center;
+    width: 2px;
+    height: 10vh;
+    background-color: white;
+    left:50vw;
+    transition: transform .5s ease-out;
+}
+.message-banner.visible::after{
+    transform: scaleY(2.5);
+}
+
+.message-banner div{
+    overflow: hidden;
+}
+.message-banner h3{
+    font-family: "Montserrat",sans-serif;
+    font-size: clamp(20px,3vw,35px);
+    font-weight: 400;
+}
+.message-banner p{
+    font-size: clamp(10px,1.2vw,20px) ;
+    font-weight: 100;
+}
+
+
+
+/*/////////////////////////////////////////////////////////*/
+
+
+.message-target{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    width: clamp(200px,35vw,500px);
+    transition: transform 1.5s cubic-bezier(0,1.01,.8,.99) .8s;
+    position: relative;
+}   
+.message-target::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom center;
+    width: 85%;
+    height: 1px;
+    background-color: white;
+    transition: transform 0.25s ease-out;
+    top: 90px;
+    left:10%;
+}
+.message-target:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom center;
+}
+.message-target.left{
+    transform:translateX(35vw)
+}
+.message-target.right{
+    transform:translateX(-35vw)
+}
+.message-target.visible{
+    transform:translateX(0vw)
+}
+
+.message-icon{
+    height: 3.2ch;
+    width: 3.2ch;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
