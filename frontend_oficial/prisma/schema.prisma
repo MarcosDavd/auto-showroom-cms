@@ -19,6 +19,7 @@ model Auto {
   anio        Int      @map("año")
   kilometraje Int
   urlImagen   String[]
+  publicIdImagen String[]
   patente     String   @unique
   precio      Float
   creadoEn    DateTime @default(now())

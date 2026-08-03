@@ -1,0 +1,112 @@
+.page-crear-auto {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+    background-color: #1d273d;
+}
+
+.crear-auto-form {
+    width: clamp(320px, 40vw, 600px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #454545;
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    font-family: "Montserrat", sans-serif;
+}
+
+.crear-auto-form h2 {
+    font-family: "dealership", sans-serif;
+    font-weight: 300;
+    font-size: clamp(20px, 2vw, 35px);
+    text-align: center;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field label {
+    font-weight: 500;
+}
+
+.form-field input,
+.form-field textarea {
+    background-color: #333333;
+    color: white;
+    border: 1px solid #666;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.field-error {
+    color: #ff8080;
+    font-size: 0.85rem;
+}
+
+.image-preview-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.image-preview-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333333;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+.image-preview-list button {
+    background: none;
+    color: #ff8080;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.form-error {
+    color: #ff8080;
+    text-align: center;
+}
+
+.form-success {
+    color: #7ee787;
+    text-align: center;
+}
+
+.crear-auto-form button {
+    background-color: #ad924a;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: "Stack Sans Headline", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.crear-auto-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
