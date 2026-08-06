@@ -1,0 +1,45 @@
+.filter-container{
+    height: 45vh;
+    width: 20vw;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.filter-container form{
+    font-family: "Stack Sans Headline";
+    width: 90%;
+    height: 100%;   
+}
+.filter-container header{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.321);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #af954e;
+}
+.filter-container header h2{
+    font-family: 'Montserrat',sans-serif;
+    font-weight:400;
+    color: #ffffff;
+}
+.filter-container form,.filter-container form div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.filter-container form div{
+    font-weight: 100;
+}
+.select-class label{
+    font-size: 1.2vw;
+}
+.select-class select{
+    background-color: #787878;
+    color: white;
+    width: 100%;
+    font-size: 1vw;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.321);
+}
