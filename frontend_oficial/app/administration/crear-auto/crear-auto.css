@@ -1,4 +1,5 @@
 .page-crear-auto {
+    position: absolute;
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -6,6 +7,7 @@
     align-items: flex-start;
     padding: 60px 20px;
     background-color: #1d273d;
+    z-index: 10;
 }
 
 .crear-auto-form {

@@ -133,7 +133,6 @@ function CrearAutoForm() {
           <span className="field-error">{errors.descripcion.message}</span>
         )}
       </div>
-
       <div className="form-field">
         <label htmlFor="images">Imágenes</label>
         <input
@@ -161,6 +160,7 @@ function CrearAutoForm() {
         )}
         {errors.images && <span className="field-error">{errors.images.message}</span>}
       </div>
+      
 
       {serverError && <p className="form-error">{serverError}</p>}
       {successMessage && <p className="form-success">{successMessage}</p>}

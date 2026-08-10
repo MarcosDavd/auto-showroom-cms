@@ -57,6 +57,7 @@ export async function POST(request) {
 
     return Response.json({ ok: true, data: auto });
   } catch (error) {
+    console.log(error)
     if (error.code === 'P2002') {
       return Response.json(
         { ok: false, message: 'Ya existe un auto registrado con esa patente' },

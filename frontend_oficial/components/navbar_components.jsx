@@ -1,12 +1,25 @@
 'use client'
 import "./navbar.css"
 import { useState } from "react"
+import Link from "next/link"
 
 function NavigationLinks(){
     return  <ul>
-                <li>MENU</li>
-                <li>LOLO</li>
-                <li>ACERQUESE</li>
+                <li>
+                    <Link href="/administration/crear-auto">
+                        CREAR AUTO TEMP
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/carPage">
+                        NUESTRO AUTOS
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/">
+                        CONTACTO
+                    </Link>
+                </li>
             </ul>
 }
 
@@ -35,7 +48,8 @@ export function Navbar(){
 }
 
 function TitleNav(){
-    return      <h1> 
+    return  <Link href="/">
+                <h1> 
                     <span className="title-concesionaria">C</span>
                     <span className="title-concesionaria">o</span>
                     <span className="title-concesionaria">n</span>
@@ -50,4 +64,6 @@ function TitleNav(){
                     <span className="title-concesionaria">i</span>
                     <span className="title-concesionaria">a</span>
                 </h1>
+            </Link>
+                
 }
