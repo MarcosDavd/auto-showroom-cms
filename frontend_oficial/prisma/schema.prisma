@@ -27,3 +27,14 @@ model Auto {
 
   @@map("autos")
 }
+model Admin{
+id  Int @id @default(autoincrement())
+email String @unique
+passwordHash String
+refreshTokenHash String?
+lastLoginAt DateTime?
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+
+  @@map("admins") 
+}
