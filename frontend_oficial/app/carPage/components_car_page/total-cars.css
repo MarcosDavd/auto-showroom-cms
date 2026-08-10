@@ -1,0 +1,35 @@
+
+.total-cars-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin: 0 20px 0 20px;
+}
+.total-cars-container > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.cars-space-container{
+    width: 70vw;
+    height: 80vh;
+}
+
+
+
+
+
+
+.divider-bar{
+    width: 20vw;
+    height: 10vh;
+    display: flex;
+    background-color: white;
+}
+.divider-bar div{
+    display: flex;
+}

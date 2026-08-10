@@ -1,4 +1,5 @@
 .page-crear-auto {
+    position: absolute;
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -6,6 +7,7 @@
     align-items: flex-start;
     padding: 60px 20px;
     background-color: #1d273d;
+    z-index: 10;
 }
 
 .crear-auto-form {
@@ -39,6 +41,7 @@
 }
 
 .form-field input,
+.form-field select,
 .form-field textarea {
     background-color: #333333;
     color: white;
@@ -46,6 +49,45 @@
     border-radius: 8px;
     padding: 10px;
     font-family: "Montserrat", sans-serif;
+}
+
+.form-field select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.marca-modelo-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.marca-modelo-fields {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.marca-modelo-fields .form-field {
+    flex: 1;
+}
+
+.link-marca-modelo {
+    flex-shrink: 0;
+    align-self: flex-end;
+    background-color: transparent;
+    color: #ad924a;
+    border: 1px solid #ad924a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.85rem;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
 }
 
 .form-field textarea {
