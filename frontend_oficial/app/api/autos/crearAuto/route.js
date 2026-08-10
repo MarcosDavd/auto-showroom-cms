@@ -15,6 +15,7 @@ export async function POST(request) {
       kilometraje: formData.get('kilometraje'),
       patente: formData.get('patente'),
       precio: formData.get('precio'),
+      estado: formData.get('estado'),
       descripcion: formData.get('descripcion') ?? '',
       images: formData.getAll('images'),
     });
@@ -30,7 +31,7 @@ export async function POST(request) {
       );
     }
 
-    const { marca, modelo, anio, kilometraje, patente, precio, descripcion, images } =
+    const { marca, modelo, anio, kilometraje, patente, precio, estado, descripcion, images } =
       parsed.data;
 
     const results = await Promise.all(
@@ -49,6 +50,7 @@ export async function POST(request) {
         kilometraje,
         patente,
         precio,
+        estado,
         descripcion: descripcion || null,
         urlImagen: results.map((r) => r.secure_url),
         publicIdImagen: results.map((r) => r.public_id),

@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { jwtVerify } from 'jose';
+import Link from 'next/link';
 import LogoutButton from './LogoutButton';
 
 export default async function AdministrationPage() {
@@ -12,6 +13,7 @@ export default async function AdministrationPage() {
     return (
         <>
             <p>HOLA {payload.email}</p>
+            <Link href="/administration/marcas-modelos">Agregar marca o modelo</Link>
             <LogoutButton />
         </>
     );

@@ -30,6 +30,7 @@ export const autoSchema = z.object({
     .number()
     .positive('El precio debe ser mayor a 0')
     .max(100_000_000, 'Valor demasiado alto'),
+  estado: z.enum(['OKM', 'USADO'], 'Elegí el estado del auto'),
   descripcion: z
     .string()
     .trim()

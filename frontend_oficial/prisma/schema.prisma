@@ -22,11 +22,37 @@ model Auto {
   publicIdImagen String[]
   patente     String   @unique
   precio      Float
+  estado      EstadoAuto @default(USADO)
   creadoEn    DateTime @default(now())
   descripcion String?
 
   @@map("autos")
 }
+
+enum EstadoAuto {
+  OKM   @map("0km")
+  USADO @map("usado")
+
+  @@map("estado_auto")
+}
+model Marca {
+  id      Int      @id @default(autoincrement())
+  nombre  String   @unique
+  modelos Modelo[]
+
+  @@map("marcas")
+}
+
+model Modelo {
+  id      Int    @id @default(autoincrement())
+  nombre  String
+  marcaId Int
+  marca   Marca  @relation(fields: [marcaId], references: [id])
+
+  @@unique([marcaId, nombre])
+  @@map("modelos")
+}
+
 model Admin{
 id  Int @id @default(autoincrement())
 email String @unique
