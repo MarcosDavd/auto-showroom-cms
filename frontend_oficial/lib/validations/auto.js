@@ -42,3 +42,10 @@ export const autoSchema = z.object({
     .min(1, 'Subí al menos una imagen')
     .max(MAX_IMAGES, `Máximo ${MAX_IMAGES} imágenes`),
 });
+
+export const autoUpdateSchema = autoSchema
+  .omit({ images: true })
+  .partial()
+  .refine((data) => Object.keys(data).length > 0, {
+    message: 'Enviá al menos un campo para actualizar',
+  });
