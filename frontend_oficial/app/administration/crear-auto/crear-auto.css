@@ -1,5 +1,4 @@
 .page-crear-auto {
-    position: absolute;
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -9,6 +8,8 @@
     background-color: #1d273d;
     z-index: 10;
 }
+
+/*/////CSS FORMUARIO///////*/
 
 .crear-auto-form {
     width: clamp(320px, 40vw, 600px);
