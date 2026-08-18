@@ -1,7 +1,6 @@
     'use client'
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import "./filter.css"
-import { useRef } from "react";
 {/**
 
 
@@ -82,65 +81,33 @@ function SelectOption({register,options,name}){
     */}
 
 export function Filter() {
-    const selectRef = useRef(null);
-
-    const {
-        register,
-        reset,
-        getValues
-    } = useForm({
+    const { control, reset: rhfReset } = useForm({
         defaultValues: {
-            transmision: "Todos"
-        }
+            transmision: "Todos",
+        },
     });
 
-    console.log(
-        "RHF:",
-        getValues("transmision")
-    );
-
     function resetForm() {
-        console.log(">>> antes reset", getValues());
-
-        console.log(
-            "SELECT ANTES:",
-            selectRef.current?.value
-        );
-
-        reset();
-
-        console.log(
-            "<<< despues reset",
-            getValues()
-        );
-
-        console.log(
-            "SELECT DESPUES:",
-            selectRef.current?.value
-        );
+        rhfReset({ transmision: 'Todos' });
     }
 
     return (
         <form className="filter-container">
+            <Controller
+                name="transmision"
+                control={control}
+                render={({ field }) => (
+                    <select {...field}>
+                        <option value="Todos">Todos</option>
+                        <option value="Automatico">Automatico</option>
+                        <option value="Manual">Manual</option>
+                    </select>
+                )}
+            />
 
-            <select
-                {...register("transmision")}
-                ref={(element) => {
-                    selectRef.current = element;
-                }}
-            >
-                <option value="Todos">Todos</option>
-                <option value="Automatico">Automatico</option>
-                <option value="Manual">Manual</option>
-            </select>
-
-            <button
-                type="button"
-                onClick={resetForm}
-            >
+            <button type="button" onClick={resetForm}>
                 RESET
             </button>
-
         </form>
     );
 }
