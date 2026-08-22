@@ -1,5 +1,5 @@
 import { uploadImage } from '../../../lib/cloudinary';
-
+import { v2 as cloudinary } from 'cloudinary';
 export const dynamic = 'force-dynamic';
 
 export async function POST(request) {
@@ -37,4 +37,48 @@ export async function POST(request) {
       { status: 500 }
     );
   }
+}
+
+/////////////////////////////////////////////////////////////////////
+///////////////DELETE FUNCTION//////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
+export async function DELETE(request) {
+    try {
+        const { searchParams } = new URL(request.url);
+
+        const publicIds = searchParams.getAll('publicId');
+
+        if (!publicIds.length) {
+            return Response.json(
+                {
+                    ok: false,
+                    message: 'No se recibieron publicIds'
+                },
+                { status: 400 }
+            );
+        }
+
+        const results = await Promise.all(
+            publicIds.map((publicId) =>
+                cloudinary.uploader.destroy(publicId)
+            )
+        );
+
+        return Response.json({
+            ok: true,
+            message: 'Imágenes eliminadas correctamente',
+            results
+        });
+
+    } catch (error) {
+        return Response.json(
+            {
+                ok: false,
+                message: 'No se pudieron eliminar las imágenes',
+                error: error.message
+            },
+            { status: 500 }
+        );
+    }
 }

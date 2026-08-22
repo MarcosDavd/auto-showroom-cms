@@ -1,8 +1,11 @@
 
 import { TotalCars } from "./components_car_page/total-cars"
-export default function CarPage(){
+import { obtenerMarcasModelos } from "../administration/crear-auto/page"
+export default async function CarPage(){
+    const [marcasSelect,modelosSelect] = await obtenerMarcasModelos();
     return  <div>
                 "BANNER"
-                <TotalCars/>
+                <TotalCars marcasSelect={marcasSelect}
+                            modelosSelect={modelosSelect}/>
             </div>
 }

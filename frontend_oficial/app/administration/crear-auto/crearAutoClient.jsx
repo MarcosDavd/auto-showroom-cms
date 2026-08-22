@@ -7,6 +7,7 @@ import './crear-auto.css';
 
 export function CrearAutoClient({ marcas, modelos }) {
   const [carInfo, setCarInfo] = useState({
+    id:"",
     marca: "",
     modelo: "",
     anio: "",
@@ -15,7 +16,8 @@ export function CrearAutoClient({ marcas, modelos }) {
     precio: "",
     estado: "",
     descripcion: "",
-    imagenes: []
+    imagenes: [],
+    imagenesId: [],
   }); 
   return (
     <section className="page-crear-auto">

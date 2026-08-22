@@ -1,40 +1,110 @@
+import { Controller } from "react-hook-form";
 
-export function InputRegisterForm({inputId,nameLabel,type,hasStep,numberStep,register,errors}){
+////////////////////////////////////////////////////////////////
+///////////CONTROLLERS////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+export function ControllerInputForm({inputId,nameLabel,type,hasStep,numberStep,control,errors}){
+  return <Controller
+                name={inputId}
+                control={control}
+                render={({field}) =>(
+                  <InputcontrolForm inputId={inputId}
+                               nameLabel={nameLabel}
+                               type={type}
+                               hasStep={hasStep}
+                               numberStep={numberStep}
+                               field={field}
+                               errors={errors}  />
+                )} 
+        />
+}
+export function ControllerSelectModelo({control,marca,modelosDisponibles,errors}){
+  return <Controller
+                name="modelo"
+                control={control}
+                render={({field}) =>(
+                  <SelectModelo field={field}
+                                marca={marca}                               
+                                modelosDisponibles={modelosDisponibles}
+                                errors={errors}/>
+                )} 
+        />
+}
+export function ControllerEstado({control,errors}){
+  return <Controller
+                name="estado"
+                control={control}
+                render={({field}) =>(
+                <SelectEstado field={field}
+                              errors={errors}  />
+                )} 
+        />
+}
+export function ControllerSelectMarca({marcas,control,errors,setValue}){
+  return <Controller
+                name="marca"
+                control={control}
+                render={({field}) =>(
+                  <SelectMarca marcas={marcas}
+                               marcaField={field}
+                               errors={errors}
+                               setValue={setValue}  />
+                )} 
+        />
+}
+export function ControllerDescripcion({control,errors}){
+  return <Controller
+                name="descripcion"
+                control={control}
+                render={({field}) =>(
+                  <DescripcionInput  field={field} 
+                                      errors={errors}/>
+                )} 
+        />
+}
+////////////////////////////////////////////////////////////////
+///////////////FUNCTIONS INTO CONTROLLERS////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+
+function InputcontrolForm({inputId,nameLabel,type,hasStep,numberStep,field,errors}){
   return  <div className="form-field">
             <label htmlFor={inputId}>{nameLabel}</label>
-            <input id={inputId} type={type} step={hasStep ? numberStep : undefined} {...register(`${inputId}`)} />
+            <input id={inputId} type={type} step={hasStep ? numberStep : undefined} {...field} />
             {errors[inputId] && <span className="field-error">{errors[inputId].message}</span>}
         </div>
 }
-export function SelectMarca({marcas,marcaField,errors}){
-  return <div className="form-field">
-            <label htmlFor="marca">Marca</label>
-            <select
-              id="marca"
-              {...marcaField}
-              onChange={(e) => {
-                marcaField.onChange(e);
-                setValue('modelo', '');
-              }}
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Elegí una marca
-              </option>
-              {marcas.map((m) => (
-                <option key={m.id} value={m.nombre}>
-                  {m.nombre}
-                </option>
-              ))}
-            </select>
-            {errors.marca && <span className="field-error">{errors.marca.message}</span>}
-          </div> 
+
+function SelectMarca({marcas,marcaField,errors,setValue}){
+  return  <div className="form-field">
+                <label htmlFor="marca">Marca</label>
+                <select id="marca"
+                        {...marcaField}
+                        onChange={(e) => {
+                          marcaField.onChange(e);
+                          setValue('modelo', '');
+                        }}
+                    
+                >
+                  <option value="" disabled>
+                    Elegí una marca
+                  </option>
+                  {marcas.map((m) => (
+                    <option key={m.id} value={m.nombre}>
+                      {m.nombre}
+                    </option>
+                  ))}
+                </select>
+                {errors.marca && <span className="field-error">{errors.marca.message}</span>}
+              </div>
 }
 
-export function SelectModelo({register,marca,modelosDisponibles,errors}){
+
+function SelectModelo({field,marca,modelosDisponibles,errors}){
   return  <div className="form-field">
             <label htmlFor="modelo">Modelo</label>
-            <select id="modelo" {...register('modelo')} defaultValue="" disabled={!marca}>
+            <select id="modelo" {...field} disabled={!marca}>
               <option value="" disabled>
                 {marca ? 'Elegí un modelo' : 'Elegí primero una marca'}
               </option>
@@ -48,7 +118,7 @@ export function SelectModelo({register,marca,modelosDisponibles,errors}){
           </div>
 }
 
-export function InputImages({fileInputRef,addFiles,images,errors}){
+export function InputImages({fileInputRef,addFiles,images,removeImage,errors}){
   return <div className="form-field">
           <label htmlFor="images">Imágenes</label>
           <input
@@ -78,10 +148,12 @@ export function InputImages({fileInputRef,addFiles,images,errors}){
       </div>
 }
 
-export function SelectEstado({register,errors}){
+
+
+function SelectEstado({field,errors}){
   return  <div className="form-field">
             <label htmlFor="estado">Estado</label>
-            <select id="estado" {...register('estado')} defaultValue="">
+            <select id="estado" {...field}>
               <option value="" disabled>
                 Elegí el estado
               </option>
@@ -90,6 +162,16 @@ export function SelectEstado({register,errors}){
             </select>
             {errors.estado && <span className="field-error">{errors.estado.message}</span>}
           </div>
+}
+
+function DescripcionInput({field,errors}){
+    return  <div className="form-field">
+              <label htmlFor="descripcion">Descripción</label>
+              <textarea id="descripcion" {...field} />
+              {errors.descripcion && (
+                <span className="field-error">{errors.descripcion.message}</span>
+              )}
+            </div>
 }
 
 export function getPublicIdFromUrl(url) {
@@ -109,3 +191,5 @@ export function getPublicIdFromUrl(url) {
   
   return publicId;
 }
+
+

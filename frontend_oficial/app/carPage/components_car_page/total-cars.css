@@ -28,7 +28,11 @@
     width: 20vw;
     height: 10vh;
     display: flex;
-    background-color: white;
+    background-color: red;
+    color: white;
+}
+.divider-bar.visible{
+    display:flex
 }
 .divider-bar div{
     display: flex;

@@ -2,7 +2,7 @@
 import { useRef,useEffect, useState } from "react";
 import "./car_target_carrousel.css"
 
-function CarTargetComp({brand,model,year,price,urlImage}){
+ export function CarTargetComp({brand,model,year,price,urlImage}){
     return  <div className="car-target">
                 <img    src={urlImage}
                         alt="carro-ejemplo" />

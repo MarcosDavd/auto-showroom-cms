@@ -44,6 +44,8 @@ function passDataCar(json){
     newObjCar["precio"] = json.data.precio;
     newObjCar["estado"] = json.data.estado;
     newObjCar["descripcion"] = json.data.descripcion;
-    newObjCar["imagenes"] = json.data.imagenes;
+    newObjCar["imagenes"] = json.data.urlImagen;
+    newObjCar["imagenesId"] = json.data.publicIdImagen;
+    newObjCar["id"]= json.data.id;
     return newObjCar
 }

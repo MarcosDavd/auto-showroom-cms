@@ -4,59 +4,16 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { autoSchema } from '@/lib/validations/auto';
-import { SelectMarca, SelectModelo, SelectEstado, InputImages, InputRegisterForm } from './componentsAutoForm';
+import { ControllerSelectMarca, ControllerSelectModelo, ControllerEstado, InputImages, ControllerInputForm ,ControllerDescripcion} from './componentsAutoForm';
 
-export function CrearAutoForm() {
+
+export function CrearAutoForm({carInfo, marcas, modelos}) {
   const {
-    register,
-    reset,
-    setValue,
-    getValues,
-  } = useForm({
-    defaultValues: {
-      anio: '',
-    },
-  });
-
-  return (
-    <form>
-      <input {...register('anio')} />
-
-      <button
-        type="button"
-        onClick={() => {
-          reset({
-            anio: '2020',
-          });
-
-          setTimeout(() => {
-            console.log('VALOR DESPUÉS DEL RESET:', getValues('anio'));
-          }, 100);
-        }}
-      >
-        RESET
-      </button>
-
-      <button
-        type="button"
-        onClick={() => {
-          setValue('anio', '2020');
-
-          console.log('VALOR DESPUÉS DE SETVALUE:', getValues('anio'));
-        }}
-      >
-        SET VALUE
-      </button>
-    </form>
-  );
-}
-{/**
-  export function CrearAutoForm({carInfo, marcas, modelos }) {
-  const {
-    register,
+    control,
     handleSubmit,
     setValue,
     watch,
+    getValues,
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -73,7 +30,8 @@ export function CrearAutoForm() {
       images: [],
     },
   });
-
+  
+  let isActiveToShowImagesUrl = false; 
   const [serverError, setServerError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [images, setImages] = useState([]);
@@ -85,7 +43,6 @@ export function CrearAutoForm() {
     ? modelos.filter((modelo) => modelo.marcaId === marca.id)
     : [];
 
-  const marcaField = register('marca');
 
   const addFiles = (fileList) => {
     const newFiles = Array.from(fileList);
@@ -157,8 +114,8 @@ export function CrearAutoForm() {
       descripcion: carInfo.descripcion ?? '',
       images: [],
     });
+    carInfo.imagenes.lenght === 0 ? isActiveToShowImagesUrl = false : isActiveToShowImagesUrl = true 
   },[carInfo])
-    console.log(carInfo)
   
   return (
     <form className="crear-auto-form" onSubmit={handleSubmit(onSubmit)}>
@@ -167,30 +124,25 @@ export function CrearAutoForm() {
       <div className="marca-modelo-row">
         <div className="marca-modelo-fields">
           
-          <SelectMarca marcas ={marcas} marcaField={marcaField} errors={errors}/>
-          <SelectModelo register={register} marca={marca} modelosDisponibles={modelosDisponibles} errors={errors}/>
+          <ControllerSelectMarca marcas ={marcas} control={control} errors={errors} setValue={setValue}/>
+          <ControllerSelectModelo control={control} marca={marca} modelosDisponibles={modelosDisponibles} errors={errors}/>
         </div>
 
         <Link href="/administration/marcas-modelos" className="link-marca-modelo">
           Crear marca o modelo
         </Link>
       </div>
-      <InputRegisterForm inputId="anio" nameLabel="Año" type="number" hasStep={true} numberStep={1} register={register} errors={errors} />
-      <InputRegisterForm inputId="kilometraje" nameLabel="Kilometraje" type="number" hasStep={true} numberStep={1} register={register} errors={errors} />
-      <InputRegisterForm inputId="patente" nameLabel="Patente" type="text" hasStep={false} numberStep={undefined} register={register} errors={errors} />
-      <InputRegisterForm inputId="precio" nameLabel="Precio" type="number" hasStep={true} numberStep={0.01} register={register} errors={errors} />
+      <ControllerInputForm inputId="anio" nameLabel="Año" type="number" hasStep={true} numberStep={1} control={control} errors={errors} />
+      <ControllerInputForm inputId="kilometraje" nameLabel="Kilometraje" type="number" hasStep={true} numberStep={1} control={control} errors={errors} />
+      <ControllerInputForm inputId="patente" nameLabel="Patente" type="text" hasStep={false} numberStep={undefined} control={control} errors={errors} />
+      <ControllerInputForm inputId="precio" nameLabel="Precio" type="number" hasStep={true} numberStep={0.01} control={control} errors={errors} />
 
-      <SelectEstado register={register} errors={errors}/>
+      <ControllerEstado control={control} errors={errors}/>
 
-      <div className="form-field">
-        <label htmlFor="descripcion">Descripción</label>
-        <textarea id="descripcion" {...register('descripcion')} />
-        {errors.descripcion && (
-          <span className="field-error">{errors.descripcion.message}</span>
-        )}
-      </div>
-      <InputImages fileInputRef={fileInputRef} addFiles={addFiles} images={images} errors={errors} />
+      <ControllerDescripcion control={control} errors={errors}/>
 
+      <InputImages fileInputRef={fileInputRef} addFiles={addFiles} images={images} removeImage={removeImage} errors={errors} />
+      <ShowImgsUrl carInfo={carInfo}/>
 
       {serverError && <p className="form-error">{serverError}</p>}
       {successMessage && <p className="form-success">{successMessage}</p>}
@@ -202,24 +154,137 @@ export function CrearAutoForm() {
         type="button"
         onClick={() =>
           reset({
-            marca: "Toyota",
-            modelo: "Corolla",
-            anio: "2020",
-            kilometraje: "50000",
-            patente: "ABC123",
-            precio: "15000",
-            estado: "disponible",
-            descripcion: "Prueba",
+            marca: "",
+            modelo: "",
+            anio: "",
+            kilometraje: "",
+            patente: "",
+            precio: "",
+            estado: "",
+            descripcion: "",
             images: [],
           })
         }
       >
         PROBAR RESET
       </button>
+      <button type='button' onClick={() => updateCar(getValues, carInfo,reset)}>Modificar</button>
+      <button type='button' onClick={() => deleteCar(carInfo,reset)}>Eliminar</button>
     </form>
   );
 }
 
-  */}
+function ShowImgsUrl({carInfo}){
+  
+  return  <section className='show-img-url-container'>
+            <ul>
+              {carInfo["imagenes"].map((img,i)=>{
+                return  <li key={img}>
+                          <p>Imagen {i === 0 ? "Principal" : `#${i}`}</p>
+                          <img src={img}></img>
+                          <button onClick={()=>deleteImagesCar(carInfo)}>x</button>
+                        </li>
+                        
+              })}
+            </ul>
+            
+          </section>
+}
+async function updateCar(getValues,carInfo,reset){
+  const data = getValues;
+  data.precio = parseFloat(data.precio);
+  data.kilometraje = parseInt(data.kilometraje);
+  data.anio = parseInt(data.anio);
+  const response = await fetch(
+        `/api/upload/actualizarAuto?id=${carInfo.id}`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    );
+    reset({
+            marca: "",
+            modelo: "",
+            anio: "",
+            kilometraje: "",
+            patente: "",
+            precio: "",
+            estado: "",
+            descripcion: "",
+            images: [],
+          })
+    console.log(response)
+}
+
+async function deleteCar(carInfo,reset){
+  await deleteImagesCar(carInfo);
+  const response = await fetch(
+        `/api/autos/eliminarAuto?id=${carInfo.id}`,
+        {
+            method: 'DELETE',
+        }
+    );
+    console.log(response)
+    reset({
+            marca: "",
+            modelo: "",
+            anio: "",
+            kilometraje: "",
+            patente: "",
+            precio: "",
+            estado: "",
+            descripcion: "",
+            images: [],
+          })
+}
+async function deleteImagesCar(carInfo) {
+  const params = new URLSearchParams();
+  carInfo.imagenesId.forEach((publicId) => {
+    params.append('publicId', publicId);
+  });
+  const responseImages = await fetch(
+    `/api/upload?${params.toString()}`,
+    {
+        method: 'DELETE'
+    }
+  );
+  console.log(responseImages)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
