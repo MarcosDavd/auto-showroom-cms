@@ -11,6 +11,9 @@ import "./car_target_carrousel.css"
                     <p>Año: {year}</p>
                     <p>Costo: ${price}</p>
                 </div>
+                <aside>
+                    <button>Ver detalles</button>
+                </aside>
             </div>
 }
 
