@@ -12,8 +12,10 @@ CAR TARG. CARROUSEL CSS
     display:flex;
     gap: 1em;
     width: 90%;
-    overflow-x: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
     margin-top: 100px;
     anchor-name: --carousel;
 }
@@ -47,6 +49,8 @@ CAR TARGET CSS
 .car-target{
     flex-shrink: 0;
     display: flex;
+    flex: 0 0 300px;
+    scroll-snap-align: start;
     flex-direction: column;
     background-color: rgb(253, 253, 253);
     height: 400px;
@@ -87,5 +91,13 @@ CAR TARGET CSS
 }
 
 
+@media (max-width: 600px) {
+    .targets-carrousel {
+        width: 100%;
+    }
 
+    .car-target {
+        flex: 0 0 100%;
+    }
+}
 

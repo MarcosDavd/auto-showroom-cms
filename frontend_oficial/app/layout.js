@@ -3,6 +3,7 @@ import "./global.css"
 import { Navbar } from "@/components/navbar_components"
 import { CarContact } from "./little_global_comps"
 import { GoogleMap } from "@/components/google_map_comp"
+import { Footer } from "@/components/footer"
 export default function RootLayout({children}){
     return <html>
                 <head>
@@ -23,9 +24,7 @@ export default function RootLayout({children}){
                     {children}
 
                    <CarContact/> 
-                    <footer>   
-                       
-                    </footer>
+                    <Footer/>
                 </body>
             </html>
 }
