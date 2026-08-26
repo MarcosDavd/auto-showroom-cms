@@ -16,7 +16,7 @@ function NavigationLinks(){
                     </Link>
                 </li>
                 <li>
-                    <Link href="/">
+                    <Link href="/contactPage">
                         CONTACTO
                     </Link>
                 </li>

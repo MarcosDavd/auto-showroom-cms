@@ -1,0 +1,25 @@
+.contact-page-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container{
+    width: 60%;
+    height: 90vh;
+}
+.form-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    height: 100%;
+}
+.form-content label{
+    color: white;
+}
+.form-container input, .form-container textarea{
+    width: 60%;
+}
