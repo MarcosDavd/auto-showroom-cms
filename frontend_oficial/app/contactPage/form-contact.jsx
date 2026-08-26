@@ -17,22 +17,22 @@ export function FormContact(){
     return  <form onSubmit={handleSubmit} className="form-container">
                 <legend></legend>
                 <fieldset className="form-content">
-                    <label htmlFor="nombre">Nombre</label>
-                    <input name="nombre" type="text" required {...register("nombre")}></input>
-
-
-                    <label htmlFor="apellido">Apellido</label>
-                    <input name="apellido" type="text" {...register("apellido")}></input>
-
-                    <label htmlFor="tel">Telefono</label>
-                    <input name="tel" type="number" {...register("tel")}></input>
-
-                    <label htmlFor="email">E-mail</label>
-                    <input name="email" type="email" required {...register("email")}></input>
-
-                    <label htmlFor="consulta">Consulta</label>
-                    <textarea name="consulta" type="" required {...register("consulta")}></textarea>
+                    <FormItem name={"nombre"} title={"Nombre"} register={register} isRequired={true}/>
+                    <FormItem name={"apellido"} title={"Apellido"} register={register} isRequired={false}/>
+                    <FormItem name={"tel"} title={"Telefono"} register={register} isRequired={true}/>
+                    <FormItem name={"email"} title={"E-mail"} register={register} isRequired={true}/>
+                    <div className="item-form">
+                        <label htmlFor="consulta">Consulta</label>
+                        <textarea name="consulta" type="" required {...register("consulta")}></textarea>
+                    </div>
                 </fieldset>
                 <button type="onSubmit">Enviar</button>
             </form>
+}
+
+function FormItem({name, title,register, isRequired}){
+    return  <div className="item-form">
+                <label htmlFor={name}>{title}</label>
+                <input name={name} type={name}  {...register("email")} required={isRequired}></input>
+            </div>
 }
