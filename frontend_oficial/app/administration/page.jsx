@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
 import { jwtVerify } from 'jose';
 import Link from 'next/link';
-import LogoutButton from './LogoutButton';
-
+import LogoutButton from '../../components/LogoutButton';
+import "./administration.css"
 export default async function AdministrationPage() {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get('access_token')?.value;
@@ -11,10 +11,13 @@ export default async function AdministrationPage() {
     const { payload } = await jwtVerify(accessToken, accessSecret);
 
     return (
-        <>
+        <main className='admin-page-container'>
             <p>HOLA {payload.email}</p>
+            
             <Link href="/administration/marcas-modelos">Agregar marca o modelo</Link>
             <LogoutButton />
-        </>
+        </main>
+            
+        
     );
 }

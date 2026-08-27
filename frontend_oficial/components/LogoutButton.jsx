@@ -12,13 +12,14 @@ export default function LogoutButton() {
         try {
             await fetch("/api/auth/logout", { method: "POST" });
         } finally {
+            router.refresh()
             router.push("/login-administration");
         }
     }
 
     return (
         <button onClick={handleLogout} disabled={loading}>
-            {loading ? "Cerrando..." : "Cerrar sesión"}
+            {loading ? "Cerrando..." : "CERRAR SESIÓN"}
         </button>
     );
 }

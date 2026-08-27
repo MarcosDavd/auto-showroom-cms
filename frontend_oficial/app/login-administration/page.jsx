@@ -41,6 +41,7 @@ function LoginContainer() {
             }
 
             router.push("/administration");
+            router.refresh();
         } catch (error) {
             setErrorMsg("Error de conexión, intentá de nuevo");
         } finally {

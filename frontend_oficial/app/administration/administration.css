@@ -1,0 +1,20 @@
+.admin-page-container{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;    
+}
+.admin-page-container p{
+    color: white;
+}
+
+.logout-button{
+    width: 7vw;
+    height: 4vw;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
