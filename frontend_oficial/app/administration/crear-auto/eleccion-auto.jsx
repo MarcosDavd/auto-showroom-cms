@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link";
 import "./eleccion-auto.css"
 
 export function EleccionAutoComponent({setCarInfo}) {
@@ -29,6 +30,7 @@ export function EleccionAutoComponent({setCarInfo}) {
             <button onClick={answer}> {/**CONVIENE TRANSOFORMAR TODO A FORM PARA EVITAR LA QUERY DEL INPUT */}
                 BUSCAR AUTO
             </button>
+            <Link href={"/administration"}>VOLVER</Link>
         </aside>
     );
 }

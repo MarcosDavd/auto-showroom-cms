@@ -31,9 +31,13 @@ export function TargetsCarrouselComp(){
         async function loadFetch() {
             const data = await getFetchData('/api/autos/obtenerAutos');
             setCarTargetData(data.data || []);
+            console.log("EFFECT TARGETS CARROUSEL");
         }
 
         loadFetch();
+        return () => {
+            console.log("UNMOUNT TARGETS");
+        };
     }, []);
     
 

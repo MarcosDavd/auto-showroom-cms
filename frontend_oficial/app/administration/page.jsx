@@ -12,7 +12,7 @@ export default async function AdministrationPage() {
     const { payload } = await jwtVerify(accessToken, accessSecret);
 
     return (
-        <>
+        <main className='admin-page-container'>
             <p>HOLA {payload.email}</p>
             <BackButton href="/" />
             <Link href="/administration/marcas-modelos">Agregar marca o modelo</Link>

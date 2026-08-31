@@ -62,6 +62,10 @@ CAR BANNER CSS
     transition: transform 1.5s cubic-bezier(0,1.01,.8,.99) .8s;
     position: relative;
 }   
+.message-target h3{
+    display: flex;
+    align-items: center;
+}
 .message-target::after{
     content: "";
     position: absolute;
