@@ -31,7 +31,7 @@ function NavigationLinks({isAuth}){
                     </Link>
                 </li>
                 <li>
-                    {isAuth ? <LogoutButton/>
+                    {isAuth ? <LogoutButton text="CERRAR SESIÓN"/>
                             : 
                     <Link href="/contactPage">
                         CONTACTO

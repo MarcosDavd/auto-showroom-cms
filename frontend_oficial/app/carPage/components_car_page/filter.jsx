@@ -19,6 +19,7 @@ export function Filter({setFiltros,marcasSelect,modelosSelect}){
         });
     const filtros = watch();
     useEffect(()=>{  
+        console.log("EFFECT TARGETS FILTER");
         setFiltros(filtros)
     },[filtros]);
     

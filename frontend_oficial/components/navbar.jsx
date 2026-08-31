@@ -1,5 +1,5 @@
 import { NavbarAndSidebar } from "./navbar_components";
-// lib/auth.js
+
 
 import { cookies } from "next/headers";
 import { jwtVerify } from "jose";

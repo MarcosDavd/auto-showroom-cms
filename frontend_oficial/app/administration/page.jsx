@@ -14,8 +14,8 @@ export default async function AdministrationPage() {
         <main className='admin-page-container'>
             <p>HOLA {payload.email}</p>
             
-            <Link href="/administration/marcas-modelos">Agregar marca o modelo</Link>
-            <LogoutButton />
+            <Link href="/administration/marcas-modelos" className='marca-modelo'>Agregar marca o modelo</Link>
+            <LogoutButton text="Cerrar sesión"/>
         </main>
             
         

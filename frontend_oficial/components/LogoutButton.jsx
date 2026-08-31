@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function LogoutButton() {
+export default function LogoutButton({text}) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ export default function LogoutButton() {
 
     return (
         <button onClick={handleLogout} disabled={loading}>
-            {loading ? "Cerrando..." : "CERRAR SESIÓN"}
+            {loading ? "Cerrando..." : text}
         </button>
     );
 }
