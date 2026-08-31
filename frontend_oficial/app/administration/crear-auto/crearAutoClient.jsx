@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import { BackButton } from '@/components/back_button';
 import { EleccionAutoComponent} from './eleccion-auto';
 import {CrearAutoForm} from './CrearAutoForm'
 import './crear-auto.css';
@@ -19,8 +20,9 @@ export function CrearAutoClient({ marcas, modelos }) {
     imagenes: [],
     imagenesId: [],
   }); 
-  return (
+    return (
     <section className="page-crear-auto">
+      <BackButton href="/administration" />
       <EleccionAutoComponent 
         setCarInfo={setCarInfo}/> 
       <CrearAutoForm

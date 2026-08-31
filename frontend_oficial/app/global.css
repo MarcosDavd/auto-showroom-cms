@@ -18,6 +18,21 @@ button{
     all: unset;
 }
 
+.back-button{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #d2b35e;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.back-button:hover{
+    color: #f8f5ed;
+}
+
 
 /*///////////////////////*/
 /* CAR-CONTACT CSS*/

@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { jwtVerify } from 'jose';
 import Link from 'next/link';
 import LogoutButton from './LogoutButton';
+import { BackButton } from '@/components/back_button';
 
 export default async function AdministrationPage() {
     const cookieStore = await cookies();
@@ -13,6 +14,7 @@ export default async function AdministrationPage() {
     return (
         <>
             <p>HOLA {payload.email}</p>
+            <BackButton href="/" />
             <Link href="/administration/marcas-modelos">Agregar marca o modelo</Link>
             <LogoutButton />
         </>

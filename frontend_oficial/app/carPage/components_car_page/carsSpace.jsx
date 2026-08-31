@@ -20,6 +20,7 @@ export function CarsSpace({filtros}){
                         {allCarsInfo.map((carInfo) =>(
                             <CarTargetComp 
                                         key={carInfo.id}
+                                        id={carInfo.id}
                                         brand ={carInfo.marca}
                                         model={carInfo.modelo}
                                         year={carInfo.anio}

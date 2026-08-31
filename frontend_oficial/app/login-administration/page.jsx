@@ -4,10 +4,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import "./login-admin.css";
 import { SvgCarThree } from "@/components/message_complement_banner";
+import { BackButton } from "@/components/back_button";
 
 export default function LoginPage() {
     return (
         <section className="page-administration-login">
+            <BackButton href="/" />
             <LoginContainer />
         </section>
     );

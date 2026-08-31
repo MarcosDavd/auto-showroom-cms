@@ -1,17 +1,18 @@
 'use client'
 import { useRef,useEffect, useState } from "react";
+import Link from "next/link";
 import "./car_target_carrousel.css"
 
- export function CarTargetComp({brand,model,year,price,urlImage}){
-    return  <div className="car-target">
+ export function CarTargetComp({id,brand,model,year,price,urlImage}){
+    return  <Link href={`/auto-detalle?id=${id}`} className="car-target">
                 <img    src={urlImage}
-                        alt="carro-ejemplo" />
+                        alt={`${brand} ${model}`} />
                 <div>
                     <h2>{brand} - {model}</h2>
                     <p>Año: {year}</p>
                     <p>Costo: ${price}</p>
                 </div>
-            </div>
+            </Link>
 }
 
 
@@ -61,6 +62,7 @@ export function TargetsCarrouselComp(){
                         {carTargetData.map((carInfo) =>(
                             <CarTargetComp 
                                         key={carInfo.id}
+                                        id={carInfo.id}
                                         brand ={carInfo.marca}
                                         model={carInfo.modelo}
                                         year={carInfo.anio}
