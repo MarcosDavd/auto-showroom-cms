@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { jwtVerify } from 'jose';
 import Link from 'next/link';
-import LogoutButton from './LogoutButton';
+import LogoutButton from '@/components/LogoutButton';
 import { BackButton } from '@/components/back_button';
 
 export default async function AdministrationPage() {
@@ -17,6 +17,6 @@ export default async function AdministrationPage() {
             <BackButton href="/" />
             <Link href="/administration/marcas-modelos">Agregar marca o modelo</Link>
             <LogoutButton />
-        </>
+        </main>
     );
 }

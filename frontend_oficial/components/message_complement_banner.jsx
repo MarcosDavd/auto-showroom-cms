@@ -1,6 +1,7 @@
 'use client'
 import "./message_complement_banner.css"
 import { ObserverComp } from "./features";
+import { useSyncExternalStore } from "react";
 
 
 
@@ -146,6 +147,14 @@ const pathOne = `M5775 5093 c-16 -8 -37 -22 -46 -29 -12 -11 -21 -11 -47 -2 -27 1
 
 
 export function SvgCarThree(){
+    const isMounted = useSyncExternalStore(
+        () => () => {},
+        () => true,
+        () => false
+    );
+
+    if (!isMounted) return null;
+
     return <svg suppressHydrationWarning
                 version="1.0" xmlns="http://www.w3.org/2000/svg"
                 width="350px" height="350px" viewBox="0 0 1280.000000 813.000000"
