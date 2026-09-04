@@ -3,20 +3,28 @@
     height: 100%;
     width: 100%;
     display: flex;
+    gap: 20px;
     margin: 0 20px 0 20px;
 }
-.total-cars-container > div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
 
 
 
 .cars-space-container{
     width: 70vw;
-    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.just-cars{
+    display:flex;
+    align-items: center;
+    gap: 1em;
+    width: 120%;
+    
+    flex-wrap: wrap;
+    
 }
 
 
@@ -27,8 +35,7 @@
 .divider-bar{
     width: 20vw;
     height: 10vh;
-    display: flex;
-    background-color: red;
+    display: none;
     color: white;
 }
 .divider-bar.visible{

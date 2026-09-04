@@ -23,7 +23,7 @@ export default function RootLayout({children}){
                     <Navbar/>
                     {children}
 
-                   <CarContact/> 
+                    <CarContact/> 
                     <Footer/>
                 </body>
             </html>
