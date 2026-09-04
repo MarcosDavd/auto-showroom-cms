@@ -114,7 +114,7 @@ function DividerPagesCars({
 
     const botones = [];
 
-    for (let i = 1; i <= totalPages; i++) {
+    for (let i = 1; i <= 3; i++) {
 
         botones.push(
             <button
@@ -128,7 +128,26 @@ function DividerPagesCars({
         );
 
     }
+    if (totalPages > 3) {
+        botones.push(
+            <span key="dots">...</span>
+        );
 
+        botones.push(
+            <button
+                className={
+                    currentPage === totalPages
+                        ? "number-button actual"
+                        : "number-button no-actual"
+                }
+                key={totalPages}
+                onClick={() => setCurrentPage(totalPages)}
+                disabled={currentPage === totalPages}
+            >
+                {totalPages}
+            </button>
+        );
+    }
 
     return (
         <aside className="divider-bar">
@@ -144,7 +163,7 @@ function DividerPagesCars({
 
 
             {botones}
-
+            
 
             <button
                 className="change-page-button"

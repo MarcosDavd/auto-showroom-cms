@@ -1,6 +1,6 @@
 .filter-container{
     height: 45vh;
-    width: 20vw;
+    width: max(400px,20vw);
     background-color: #ffffff;
     border-radius: 10px;
     display: flex;
@@ -8,6 +8,12 @@
     justify-content: center;
     align-items: center;
 }
+@media(max-width:670px){
+    .filter-container{
+        width: 90%;
+    }
+}
+
 .filter-container form{
     font-family: "Stack Sans Headline";
     width: 90%;
@@ -34,12 +40,12 @@
     font-weight: 100;
 }
 .select-class label{
-    font-size: 1.2vw;
+    font-size: max(1.2vw,20px);
 }
 .select-class select{
     background-color: #787878;
     color: white;
     width: 100%;
-    font-size: 1vw;
+    font-size: max(1.2vw,20px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.321);
 }

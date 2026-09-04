@@ -3,11 +3,14 @@
     height: 100%;
     width: 97.5%;
     display: flex;
-    
     gap: 40px;
     margin: 40px 0px 40px 30px;
 }
-
+@media(max-width:670px){
+    .total-cars-container{
+        flex-direction: column;
+    }
+}
 /*//////////////////////////////////////////////*/
 /*/////////////CARS SPACE ONLY/////////////////////*/
 /*//////////////////////////////////////////////*/
@@ -31,7 +34,14 @@
     
 }
 
-
+@media(max-width:670px){
+    .total-cars-container{
+        flex-direction: column;
+    }
+    .cars-space-container{
+        width: 90%;
+    }
+}
 
 /*//////////////////////////////////////////////*/
 /*/////////////DIVIDER BAR + BUTTONS/////////////////////*/
@@ -39,7 +49,7 @@
 
 .divider-bar{
     box-shadow: 0 6px 12px rgb(235, 235, 235,0.5);
-    width: 24vw;
+    width: max(350px,24vw);
     height: 12vh;
     display: flex;
     justify-content: space-around;
@@ -91,3 +101,4 @@
     width: 15%;
     background-color: rgb(34, 34, 74);
 }
+
