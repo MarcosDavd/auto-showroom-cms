@@ -1,46 +1,93 @@
 
 .total-cars-container{
     height: 100%;
-    width: 100%;
+    width: 97.5%;
     display: flex;
-    gap: 20px;
-    margin: 0 20px 0 20px;
+    
+    gap: 40px;
+    margin: 40px 0px 40px 30px;
 }
 
-
+/*//////////////////////////////////////////////*/
+/*/////////////CARS SPACE ONLY/////////////////////*/
+/*//////////////////////////////////////////////*/
 
 
 .cars-space-container{
-    width: 70vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 40px;
+    
 }
 .just-cars{
     display:flex;
     align-items: center;
     gap: 1em;
-    width: 120%;
-    
+    width: 100%;
     flex-wrap: wrap;
     
 }
 
 
 
-
-
+/*//////////////////////////////////////////////*/
+/*/////////////DIVIDER BAR + BUTTONS/////////////////////*/
+/*//////////////////////////////////////////////*/
 
 .divider-bar{
-    width: 20vw;
-    height: 10vh;
-    display: none;
+    box-shadow: 0 6px 12px rgb(235, 235, 235,0.5);
+    width: 24vw;
+    height: 12vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    font-size: 1.2rem;
+    font-family: "Stack Sans Headline", sans-serif;
+    font-weight: 300;
+    border-radius: 10px;
+}
+
+.change-page-button svg{
+    fill: #9f853e;
+    width: 1.8em;
+    height: 1.8em;
+}
+
+.change-page-button:nth-child(1) > svg{
+    transform: scaleX(-1);
+}
+
+.change-page-button, .number-button{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+    border-radius: 10px;
+}
+.change-page-button{
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 25%;
+    background-color: rgb(34, 34, 74);
+}
+
+.number-button.no-actual{
+    color: rgb(127, 126, 126);
+    transition: background-color 0.2s ease-in;
+    width: 15%; 
+}
+.number-button.no-actual:hover{
+    background-color: #786530;
     color: white;
 }
-.divider-bar.visible{
-    display:flex
-}
-.divider-bar div{
-    display: flex;
+.number-button.actual{
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+    width: 15%;
+    background-color: rgb(34, 34, 74);
 }

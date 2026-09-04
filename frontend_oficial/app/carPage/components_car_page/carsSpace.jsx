@@ -2,64 +2,63 @@
 
 import { useEffect, useState } from "react";
 import { CarTargetComp } from "@/components/car_target_carrousel";
-import "./total-cars.css"
+import "./total-cars.css";
+
+const CARS_PER_PAGE = 12;
 
 export function CarsSpace({ filtros }) {
 
     const [queryCars, setQueryCars] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [loading, setLoading] = useState(false);
 
-    const [numElements, setNumElements] = useState({
-        from: 0,
-        to: 11
-    });
 
+    // Cada vez que cambian los filtros,
+    // volvemos a la página 1.
     useEffect(() => {
-        async function mamaVergaAsync() {
-            const data = await functionQueryCars();
-            setQueryCars(data);
+        setCurrentPage(1);
+    }, [JSON.stringify(filtros)]);
+
+
+    // Cada vez que cambia la página o los filtros,
+    // hacemos una nueva petición al endpoint.
+    useEffect(() => {
+
+        async function getCars() {
+
+            setLoading(true);
+
+            try {
+
+                const data = await functionQueryCars(
+                    filtros,
+                    currentPage
+                );
+
+                if (data.ok) {
+                    setQueryCars(data.data);
+                    setTotalPages(data.pagination.totalPages);
+                } else {
+                    setQueryCars([]);
+                    setTotalPages(1);
+                }
+
+            } catch (error) {
+
+                console.error("Error obteniendo autos:", error);
+
+                setQueryCars([]);
+                setTotalPages(1);
+
+            } finally {
+                setLoading(false);
+            }
         }
 
-        mamaVergaAsync();
-    }, []);
+        getCars();
 
-    // Cada vez que cambian los filtros, volvemos a la página 1
-    useEffect(() => {
-        setNumElements({
-            from: 0,
-            to: 11
-        });
-    }, [filtros]);
-
-
-    const allCars = queryCars.length === 0
-        ? []
-        : queryCars.data;
-
-
-    // Nos quedamos únicamente con los filtros que no sean "todos"
-    const filtrosActivos = Object.entries(filtros)
-        .filter(([clave, valor]) => valor.toLowerCase() !== "todos");
-
-
-    // PRIMER FILTRADO:
-    // todos los autos que cumplen las condiciones
-    const filteredCars = allCars.filter(car => {
-        return filtrosActivos.every(
-            ([clave, valor]) => car[clave] === valor
-        );
-    });
-
-
-    // Calculamos las páginas sobre TODOS los autos filtrados
-    const numPages = Math.ceil(filteredCars.length / 12);
-
-
-    // SEGUNDO FILTRADO:
-    // solamente los autos correspondientes a la página actual
-    const allCarsleaked = filteredCars.filter((car, i) => {
-        return i >= numElements.from &&
-               i <= numElements.to;
-    });
+    }, [JSON.stringify(filtros), currentPage]);
 
 
     return (
@@ -67,22 +66,32 @@ export function CarsSpace({ filtros }) {
 
             <div className="just-cars">
 
-                {allCarsleaked.map((carInfo) => (
-                    <CarTargetComp
-                        key={carInfo.id}
-                        brand={carInfo.marca}
-                        model={carInfo.modelo}
-                        year={carInfo.anio}
-                        price={carInfo.precio}
-                        urlImage={carInfo.urlImagen[0]}
-                    />
-                ))}
+                {loading ? (
+
+                    <p>Cargando autos...</p>
+
+                ) : (
+
+                    queryCars.map((carInfo) => (
+                        <CarTargetComp
+                            key={carInfo.id}
+                            brand={carInfo.marca}
+                            model={carInfo.modelo}
+                            year={carInfo.anio}
+                            price={carInfo.precio}
+                            urlImage={carInfo.urlImagen[0]}
+                        />
+                    ))
+
+                )}
 
             </div>
 
+
             <DividerPagesCars
-                numPages={numPages}
-                setNumElements={setNumElements}
+                totalPages={totalPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
             />
 
         </section>
@@ -90,67 +99,101 @@ export function CarsSpace({ filtros }) {
 }
 
 
-function DividerPagesCars({ numPages, setNumElements }) {
+function DividerPagesCars({
+    totalPages,
+    currentPage,
+    setCurrentPage
+}) {
+
+    // Si solamente hay una página,
+    // no mostramos absolutamente nada.
+    if (totalPages <= 1) {
+        return null;
+    }
+
 
     const botones = [];
 
-    for (let i = 0; i < numPages; i++) {
+    for (let i = 1; i <= totalPages; i++) {
 
         botones.push(
             <button
+                className={currentPage === i ? "number-button actual": "number-button no-actual"}
                 key={i}
-                onClick={() => {
-                    setNumElements({
-                        from: 12 * i,
-                        to: (12 * (i + 1)) - 1
-                    });
-                }}
+                onClick={() => setCurrentPage(i)}
+                disabled={currentPage === i}
             >
-                {i + 1}
+                {i}
             </button>
         );
 
     }
 
-    return (
-        <aside className={numPages > 1 ? "divider-bar visible" : "divider-bar"}>
 
-            <button>Prev</button>
+    return (
+        <aside className="divider-bar">
+
+            <button
+                className="change-page-button"
+                onClick={() => setCurrentPage(currentPage - 1)}
+                disabled={currentPage === 1}
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
+                Prev
+            </button>
+
 
             {botones}
 
-            <button>Next</button>
+
+            <button
+                className="change-page-button"
+                onClick={() => setCurrentPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+            >
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m242-200 200-280-200-280h98l200 280-200 280h-98Zm238 0 200-280-200-280h98l200 280-200 280h-98Z"/></svg>
+            </button>
 
         </aside>
     );
 }
 
 
-async function functionQueryCars() {
+async function functionQueryCars(filtros, page) {
 
-    const queryString = 'api/autos/obtenerAutos';
+    const params = new URLSearchParams();
 
-    const res = await fetch(queryString, {
-        method: 'GET'
+    // Siempre pedimos 12 autos por página
+    params.set("page", page);
+    params.set("limit", CARS_PER_PAGE);
+
+
+    // Solamente agregamos los filtros
+    // cuyo valor NO sea "todos".
+    Object.entries(filtros).forEach(([key, value]) => {
+
+        if (value && value.toLowerCase() !== "todos") {
+            params.set(key, value);
+        }
+
     });
 
-    const json = await res.json();
 
-    return json;
+    const queryString = `/api/autos/obtenerAutos?${params.toString()}`;
+
+    console.log("Consultando:", queryString);
+
+
+    const res = await fetch(queryString, {
+        method: "GET"
+    });
+
+
+    if (!res.ok) {
+        throw new Error("No se pudieron obtener los autos");
+    }
+
+
+    return await res.json();
 }
-
-// async function  functionQueryCars(filtros){
-//             let queryString = 'api/autos/obtenerAutos?'  
-//                 Object.entries(filtros).forEach(([key,value])=>{
-//                     value = value.toLowerCase();
-                    
-//                     if(value !== "todos"){
-//                         queryString += `${key}=${value}&`;
-//                     }
-//                 })
-//             const res = await fetch(queryString,{
-//                     method:'GET'
-//                 });
-//             const json = await res.json()
-//             return json;
-//         }

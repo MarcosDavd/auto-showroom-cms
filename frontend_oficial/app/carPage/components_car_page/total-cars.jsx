@@ -9,10 +9,8 @@ export function TotalCars({marcasSelect,modelosSelect}){
                 <Filter setFiltros ={setFiltros}
                         marcasSelect={marcasSelect}
                         modelosSelect={modelosSelect}/>
-                <div>
-                    <CarsSpace filtros = {filtros}/>
+                <CarsSpace filtros = {filtros}/>
                     
-                </div>
             </main>
 }
 
