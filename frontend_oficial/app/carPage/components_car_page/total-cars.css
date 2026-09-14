@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .total-cars-container{
     height: 100%;
@@ -33,3 +34,109 @@
 .divider-bar div{
     display: flex;
 }
+=======
+
+.total-cars-container{
+    height: 100%;
+    width: 97.5%;
+    display: flex;
+    gap: 40px;
+    margin: 40px 0px 40px 30px;
+}
+@media(max-width:670px){
+    .total-cars-container{
+        flex-direction: column;
+    }
+}
+/*//////////////////////////////////////////////*/
+/*/////////////CARS SPACE ONLY/////////////////////*/
+/*//////////////////////////////////////////////*/
+
+
+.cars-space-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    
+}
+.just-cars{
+    display:flex;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    flex-wrap: wrap;
+    
+}
+
+@media(max-width:670px){
+    .total-cars-container{
+        flex-direction: column;
+    }
+    .cars-space-container{
+        width: 90%;
+    }
+}
+
+/*//////////////////////////////////////////////*/
+/*/////////////DIVIDER BAR + BUTTONS/////////////////////*/
+/*//////////////////////////////////////////////*/
+
+.divider-bar{
+    box-shadow: 0 6px 12px rgb(235, 235, 235,0.5);
+    width: max(350px,24vw);
+    height: 12vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    font-size: 1.2rem;
+    font-family: "Stack Sans Headline", sans-serif;
+    font-weight: 300;
+    border-radius: 10px;
+}
+
+.change-page-button svg{
+    fill: #9f853e;
+    width: 1.8em;
+    height: 1.8em;
+}
+
+.change-page-button:nth-child(1) > svg{
+    transform: scaleX(-1);
+}
+
+.change-page-button, .number-button{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+    border-radius: 10px;
+}
+.change-page-button{
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 25%;
+    background-color: rgb(34, 34, 74);
+}
+
+.number-button.no-actual{
+    color: rgb(127, 126, 126);
+    transition: background-color 0.2s ease-in;
+    width: 15%; 
+}
+.number-button.no-actual:hover{
+    background-color: #786530;
+    color: white;
+}
+.number-button.actual{
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+    width: 15%;
+    background-color: rgb(34, 34, 74);
+}
+
+>>>>>>> origin/feature/carSpaceDetails
