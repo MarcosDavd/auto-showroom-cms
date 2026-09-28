@@ -15,8 +15,9 @@ export default function RootLayout({children}){
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
                     <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet"></link>
                     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link>
-                    <title>my app</title>
-                </head>  
+                    <title>Concesionaria</title>
+                    <link rel="icon" type="image/svg+xml" href="/car.svg" /></head>  
+
                 <body>
                     <Navbar/>
                     {children}

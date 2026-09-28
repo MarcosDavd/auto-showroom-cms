@@ -39,5 +39,6 @@ export const config = {
         '/api/autos/eliminarAuto',
         '/api/marcas/crearMarca',
         '/api/modelos/crearModelo',
+        '/api/upload',
     ],
 };

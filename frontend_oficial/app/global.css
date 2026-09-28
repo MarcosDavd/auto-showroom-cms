@@ -34,61 +34,73 @@ button{
 }
 
 
-/*///////////////////////*/
-/* CAR-CONTACT CSS*/
-/*///////////////////////*/
-
-
-
-.car-movingX{
+.whatsapp-contact{
     position: fixed;
-    bottom:2vh;
-    z-index: 2;
-    animation:car-route 10s linear  forwards;
+    right: 20px;
+    bottom: 20px;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    animation: whatsapp-enter 450ms ease-out both;
 }
-.car-movingY{
-    width: 80px;
-    height: 80px;
-    animation:car-vibration 40ms linear 250  alternate,
-               hide-car 0.5s cubic-bezier(1, 0.01, 0, 0.92) 10.3s forwards;
+.whatsapp-message{
+    padding: 11px 15px;
+    border-radius: 7px;
+    background: #fff;
+    color: #242424;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    box-shadow: 0 3px 16px rgb(0 0 0 / 24%);
 }
-@keyframes car-route{
+.whatsapp-button-icon{
+    display: grid;
+    width: 58px;
+    height: 58px;
+    place-items: center;
+    border-radius: 50%;
+    background: #25d366;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 30%);
+    transition: transform 160ms ease, background-color 160ms ease;
+}
+.whatsapp-contact:hover .whatsapp-button-icon{
+    transform: translateY(-3px);
+    background: #1fbd5b;
+}
+.whatsapp-contact:focus-visible{
+    outline: 3px solid #fff;
+    outline-offset: 5px;
+    border-radius: 8px;
+}
+@keyframes whatsapp-enter{
     from{
-        right: max(1400px, 140vw);
+        opacity: 0;
+        transform: translateY(12px);
     }
     to{
-        right:2%;
+        opacity: 1;
+        transform: translateY(0);
     }
 }
-@keyframes car-vibration{
-    from{
-        translate:0;
+@media (max-width: 520px){
+    .whatsapp-contact{
+        right: 14px;
+        bottom: 14px;
     }
-    to{
-        translate:0 4px;
+    .whatsapp-message{
+        padding: 9px 11px;
+        font-size: 0.78rem;
+    }
+    .whatsapp-button-icon{
+        width: 52px;
+        height: 52px;
     }
 }
-@keyframes hide-car{
-    to{
-        width: 0px;
-    }
-}
-
-/*//////////////////////////////////////////////*/
-/* WHATSAPP - CSS*/
-/*//////////////////////////////////////////////*/
-
-
-
-
-.whatsapp-icon{
-    height: 80px;
-    width: 0px;
-    animation:show-whatsapp 0.5s cubic-bezier(1, 0.01, 0, 0.92) 10.7s forwards
-}
-
-@keyframes show-whatsapp{
-    to{
-        width: 80px;
+@media (prefers-reduced-motion: reduce){
+    .whatsapp-contact,
+    .whatsapp-button-icon{
+        animation: none;
+        transition: none;
     }
 }
