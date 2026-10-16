@@ -10,8 +10,9 @@ export default async function MarcasModelosPage() {
 
     return (
         <section className="page-marcas-modelos">
-            <BackButton href="/administration" />
             <MarcasModelosForms initialMarcas={marcas} />
+            <BackButton href="/administration" classBack={"volver"} text="← Volver"/>
+            <BackButton href="/administration" classBack={"volver-phone"} text="←"/>
         </section>
     );
 }

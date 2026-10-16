@@ -11,21 +11,20 @@ export function Filter({setFiltros,marcasSelect,modelosSelect}){
             reset,
         } = useForm({
             defaultValues: {
-            transmision: "Todos",
-            combustible: "Todos",
+            estado:"Todos",
             marca: "Todos",
             modelo:"Todos",
             }
         });
     const filtros = watch();
     useEffect(()=>{  
-        console.log("EFFECT TARGETS FILTER");
+        console.log("Filtros en filtros: ", filtros);
         setFiltros(filtros)
     },[filtros]);
     
-    const optionsTransmision = ["Automatico","Manual"];
+    const optionsEstado = ["Usado","Okm"];
     const optionsMarca = marcasSelect.map((elemento)=>{return elemento.nombre})
-    const optionsCombusible = ["Diesel","Nafta","Electrico","Hibrido"];
+    
     const optionsModelo = modelosSelect.map((elemento)=>{return elemento.nombre})
 
     return <section className="filter-container">
@@ -36,13 +35,8 @@ export function Filter({setFiltros,marcasSelect,modelosSelect}){
                    
                     <SelectOption 
                                 control ={control}                                
-                                options={optionsTransmision}
-                                name = "transmision"
-                                />
-                    <SelectOption 
-                                control ={control}                                
-                                options={optionsCombusible}
-                                name = "combustible"
+                                options={optionsEstado}
+                                name = "estado"
                                 />
                     <SelectOption
                                 control ={control}
@@ -79,7 +73,7 @@ function SelectOption({control,options,name}){
                     <select  {...field}>
                         <option key="todos" value="todos">Todos</option>
                         {options.map(element => {
-                        return <option key={element} value={element.toLowerCase()}>{element}</option>
+                        return <option key={element} value={name === "estado" ?  element.toUpperCase() : element.toLowerCase()}>{element}</option>
                             })
                         }
                     </select>

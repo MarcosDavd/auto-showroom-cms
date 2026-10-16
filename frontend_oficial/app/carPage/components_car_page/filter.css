@@ -24,7 +24,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #af954e;
+    background:linear-gradient(180deg,#efbc45,#c79b24,#8d701f);
 }
 .filter-container header h2{
     font-family: 'Montserrat',sans-serif;

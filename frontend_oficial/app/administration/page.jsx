@@ -3,6 +3,7 @@ import { jwtVerify } from 'jose';
 import Link from 'next/link';
 import LogoutButton from '@/components/LogoutButton';
 import { BackButton } from '@/components/back_button';
+import "./administration.css"
 
 export default async function AdministrationPage() {
     const cookieStore = await cookies();
@@ -13,10 +14,14 @@ export default async function AdministrationPage() {
 
     return (
         <main className='admin-page-container'>
-            <p>HOLA {payload.email}</p>
-            <BackButton href="/" />
-            <Link href="/administration/marcas-modelos">Agregar marca o modelo</Link>
-            <LogoutButton />
+            <p>Bienvenido {payload.email}</p>
+            <section className='three-buttons'>
+                <Link className='marca-modelo' href="/administration/marcas-modelos">Agregar marca o modelo</Link>
+                <Link className='marca-modelo' href="/administration/crear-auto">Crear auto</Link>
+            </section>
+            <LogoutButton text="Salir"/>
         </main>
     );
 }
+
+

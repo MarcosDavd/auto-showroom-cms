@@ -166,7 +166,7 @@ export function CrearAutoForm({carInfo, marcas, modelos}) {
           })
         }
       >
-        PROBAR RESET
+        Reset
       </button>
       <button type='button' onClick={() => updateCar(getValues, carInfo,reset)}>Modificar</button>
       <button type='button' onClick={() => deleteCar(carInfo,reset)}>Eliminar</button>

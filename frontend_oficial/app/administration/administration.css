@@ -6,13 +6,17 @@
     align-items: center;
     justify-content: space-around;
     color: rgb(251, 251, 251);  
-    background-color:rgb(66, 65, 65) ;  
-    position: fixed;
+    background-color:#1d273d ;  
+    position: relative;
     z-index: 10;
-}
-.admin-page-container{
     font-size: 3rem;
 }
+.admin-page-container p{
+    font-family: "dealership",system-ui;
+    color: #c19f4a;
+    font-weight: 100;
+}
+
 .marca-modelo, .admin-page-container button{
     display: flex;
     justify-content: center;
@@ -20,11 +24,21 @@
     border-radius: 40px;
     width: 25vw;
     height: 15vh;
-    background-color: #b99e53;
+    background-color: #454545;
     font-size: 2rem;
     font-family: "Stack Sans Headline",sans-serif;
-    font-weight: 100; 
+    font-weight: 300; 
+    transition:background-color 500ms ease-in-out;
+}
+.marca-modelo:hover{
+    background-color: #c19f4a;
 }
 .admin-page-container button{
     background-color: #9e1b1b;
+    color: white;
+}
+.three-buttons{
+    display: flex;
+    gap: 50px;
+    align-items: center;
 }
