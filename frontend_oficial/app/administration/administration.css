@@ -1,30 +1,313 @@
-.admin-page-container{
-    width: 100vw;
-    height: 90vh;
-    display: flex;
+.admin-dashboard {
+  width: min(1200px, calc(100% - 32px));
+  margin: 32px auto 64px;
+  color: #101828;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+.admin-eyebrow,
+.admin-table-kicker {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  color: #a5b4fc;
+  font-weight: 700;
+}
+
+.admin-topbar h1 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: clamp(1.8rem, 2vw, 2.5rem);
+}
+
+.admin-topbar button {
+  border: 0;
+  padding: 0.8rem 1.3rem;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.admin-kpi {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+}
+
+.admin-kpi span {
+  display: block;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #64748b;
+}
+
+.admin-kpi strong {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(1.7rem, 2vw, 2.4rem);
+  color: #0f172a;
+}
+
+.admin-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.admin-action-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  border-radius: 18px;
+  color: #0f172a;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  border: 1px solid #dbeafe;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.admin-action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.12);
+}
+
+.admin-action-card span {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #4f46e5;
+  font-weight: 700;
+}
+
+.admin-action-card strong {
+  font-size: 1.15rem;
+}
+
+.admin-trends {
+  margin-top: 28px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+}
+
+.admin-trends-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.admin-trends-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.admin-period-switch {
+  display: inline-flex;
+  background: #f1f5f9;
+  border-radius: 999px;
+  padding: 6px;
+  gap: 6px;
+}
+
+.admin-period-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.admin-period-switch a.is-active {
+  background: #111827;
+  color: #fff;
+}
+
+.admin-trends-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.admin-trend-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.admin-trend-panel h3 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+}
+
+.admin-trend-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-trend-panel li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-trend-panel li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.admin-trend-panel span {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.admin-trend-panel strong {
+  color: #1d4ed8;
+}
+
+.admin-trend-panel-wide {
+  grid-column: span 1;
+}
+
+.admin-table-card {
+  margin-top: 28px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+}
+
+.admin-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.admin-table-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.admin-link-secondary {
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table-card th,
+.admin-table-card td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.admin-table-card th {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.admin-table-card td {
+  color: #0f172a;
+  font-size: 0.96rem;
+}
+
+.admin-vehicle-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #111827;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.admin-thumb {
+  display: inline-flex;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e2e8f0;
+}
+
+.admin-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-empty {
+  margin: 8px 0 0;
+  color: #64748b;
+}
+
+@media (max-width: 760px) {
+  .admin-topbar,
+  .admin-trends-header,
+  .admin-table-header {
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    color: rgb(251, 251, 251);  
-    background-color:rgb(66, 65, 65) ;  
-    position: fixed;
-    z-index: 10;
+    align-items: flex-start;
+  }
+
+  .admin-kpis,
+  .admin-actions,
+  .admin-trends-grid {
+    grid-template-columns: 1fr;
+  }
 }
-.admin-page-container{
-    font-size: 3rem;
-}
-.marca-modelo, .admin-page-container button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 40px;
-    width: 25vw;
-    height: 15vh;
-    background-color: #b99e53;
-    font-size: 2rem;
-    font-family: "Stack Sans Headline",sans-serif;
-    font-weight: 100; 
-}
-.admin-page-container button{
-    background-color: #9e1b1b;
-}
+

@@ -22,7 +22,7 @@ export async function POST(request) {
     }
     //si o si usar los path sino no se diferencia que cookie borrar
     cookieStore.delete({ name: 'access_token', path: '/' });
-    cookieStore.delete({ name: 'refresh_token', path: '/api/auth/refresh' });
+    cookieStore.delete({ name: 'refresh_token', path: '/' });
 
     return Response.json({ ok: true, message: 'Sesión cerrada' }, { status: 200 });
 }

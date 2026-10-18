@@ -33,6 +33,7 @@ function LoginContainer() {
         try {
             const res = await fetch("/api/auth/login", {
                 method: "POST",
+                credentials: "same-origin",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
             });
@@ -43,7 +44,7 @@ function LoginContainer() {
                 return;
             }
 
-            router.push("/administration");
+            router.replace("/administration");
             router.refresh();
         } catch (error) {
             setErrorMsg("Error de conexión, intentá de nuevo");

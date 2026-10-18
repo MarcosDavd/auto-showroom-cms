@@ -67,17 +67,17 @@ export async function POST(request) {
         const cookieStore = await cookies();
         cookieStore.set('access_token', accessToken, {
             httpOnly: true,
-            secure: true,
-            sameSite: 'strict',
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
             maxAge: 60 * 15,
             path: '/',
         });
         cookieStore.set('refresh_token', refreshToken, {
             httpOnly: true,
-            secure: true,
-            sameSite: 'strict',
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
             maxAge: 60 * 60 * 24 * 7,
-            path: '/api/auth/refresh',
+            path: '/',
         });
 
         return Response.json(
