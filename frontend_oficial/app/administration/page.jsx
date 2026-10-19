@@ -93,10 +93,8 @@ export default async function AdministrationPage({ searchParams }) {
       <main className='admin-dashboard'>
         <header className='admin-topbar'>
           <div>
-            <p className='admin-eyebrow'>Panel administrativo</p>
-            <h1>Bienvenido, {email}</h1>
+            <h1>Panel de administracion</h1>
           </div>
-          <LogoutButton text='Cerrar sesión' />
         </header>
 
         <section className='admin-kpis'>
@@ -196,7 +194,6 @@ export default async function AdministrationPage({ searchParams }) {
         <section className='admin-table-card'>
           <div className='admin-table-header'>
             <div>
-              <p className='admin-table-kicker'>Inventario</p>
               <h2>Autos recientes</h2>
             </div>
             <Link href='/carPage' className='admin-link-secondary'>Ver catálogo</Link>

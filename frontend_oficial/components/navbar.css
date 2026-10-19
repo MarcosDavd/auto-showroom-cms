@@ -45,6 +45,23 @@ ul{
     position: relative;
     align-items: center;    
 }
+.navbar ul li .admin-nav-link{
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    padding: 0 16px;
+    border: 1px solid currentColor;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+.navbar ul li .admin-nav-link:hover{
+    color: #434b57;
+    background-color: #fff;
+    border-color: #fff;
+}
 .navbar ul li::after,.navbar ul li::before{  
     content: "";
     position: absolute;
@@ -129,6 +146,12 @@ ul{
     min-height: 56px;
     align-items: center;
     color: #242830;
+}
+.sidebar ul li .admin-nav-link{
+    padding: 0 14px;
+    color: #fff;
+    background: #434b57;
+    border-radius: 8px;
 }
 .sidebar.open{
     transform: translateX(0);

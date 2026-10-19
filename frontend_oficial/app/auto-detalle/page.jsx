@@ -55,7 +55,6 @@ export default async function AutoDetallePage({ searchParams }) {
           <div><dt>Modelo</dt><dd>{autoActualizado.modelo}</dd></div>
           <div><dt>Kilómetros</dt><dd>{new Intl.NumberFormat('es-AR').format(autoActualizado.kilometraje)} km</dd></div>
           <div><dt>Año</dt><dd>{autoActualizado.anio}</dd></div>
-          <div><dt>Visitas</dt><dd>{autoActualizado.visitas}</dd></div>
         </dl>
 
         <div className="detail-description">

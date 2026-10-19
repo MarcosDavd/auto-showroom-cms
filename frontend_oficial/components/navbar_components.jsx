@@ -38,9 +38,14 @@ export function NavbarAndSidebar({isAuth}){
 function NavigationLinks({isAuth, onNavigate}){
     return  <ul>
                 <li>
+                    {isAuth && <Link href="/administration" onClick={onNavigate}>
+                        PANEL DE ADMINISTRACION
+                    </Link>}
+                </li>
+                <li>
                     {isAuth &&(
                         <Link href="/administration/crear-auto" onClick={onNavigate}>
-                            CREAR AUTO TEMP
+                            REGISTRAR AUTO
                         </Link>
                     )}
                     

@@ -1,51 +1,239 @@
-.filter-container{
-    height: 45vh;
-    width: max(400px,20vw);
-    background-color: #ffffff;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-@media(max-width:670px){
-    .filter-container{
-        width: 90%;
-    }
+.filter-container {
+  --gold: #af954e;
+  --gold-soft: rgba(175, 149, 78, 0.18);
+  --panel: #25272e;
+  --field: #1b1d22;
+  --border: rgba(255, 255, 255, 0.09);
+  --text: #f1f1f1;
+  --muted: #9aa0ab;
+
+  width: max(340px, 20vw);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text);
 }
 
-.filter-container form{
-    font-family: "Stack Sans Headline";
+@media (max-width: 670px) {
+  .filter-container {
     width: 90%;
-    height: 100%;   
+    position: static;
+  }
 }
-.filter-container header{
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.321);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: #af954e;
+
+/* ---------- Header ---------- */
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #c4a95c, #8f7637);
 }
-.filter-container header h2{
-    font-family: 'Montserrat',sans-serif;
-    font-weight:400;
-    color: #ffffff;
+
+.filter-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
 }
-.filter-container form,.filter-container form div{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+
+.filter-reset {
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
 }
-.filter-container form div{
-    font-weight: 100;
+
+.filter-reset:hover {
+  background: rgba(0, 0, 0, 0.4);
 }
-.select-class label{
-    font-size: max(1.2vw,20px);
+
+.filter-reset:active {
+  transform: scale(0.96);
 }
-.select-class select{
-    background-color: #787878;
-    color: white;
-    width: 100%;
-    font-size: max(1.2vw,20px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.321);
+
+/* ---------- Form ---------- */
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label,
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Inputs & selects ---------- */
+.filter-form input[type='number'],
+.filter-form select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 0 12px;
+  background: var(--field);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.filter-form input::placeholder {
+  color: #646a75;
+}
+
+.filter-form input:hover,
+.filter-form select:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-form input:focus,
+.filter-form select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+/* Select con flecha propia */
+.filter-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 36px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23af954e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.filter-form select option {
+  background: var(--panel);
+  color: var(--text);
+}
+
+/* Quitar flechitas de input number */
+.filter-form input[type='number'] {
+  -moz-appearance: textfield;
+}
+.filter-form input[type='number']::-webkit-outer-spin-button,
+.filter-form input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ---------- Rangos ---------- */
+.range-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.range-dash {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.input-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.input-wrap .prefix,
+.input-wrap .suffix {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.input-wrap .prefix {
+  left: 12px;
+}
+
+.input-wrap .suffix {
+  right: 12px;
+}
+
+.filter-form input.has-prefix {
+  padding-left: 26px;
+}
+
+/* ---------- Estado (segmented) ---------- */
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 4px;
+  background: var(--field);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.segmented-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.segmented-option input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.segmented-option span {
+  display: block;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: background 0.2s, color 0.2s;
+}
+
+.segmented-option:hover span {
+  color: var(--text);
+}
+
+.segmented-option input:checked + span {
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(175, 149, 78, 0.4);
+}
+
+.segmented-option input:focus-visible + span {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }

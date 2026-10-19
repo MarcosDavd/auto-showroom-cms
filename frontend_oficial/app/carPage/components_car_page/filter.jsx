@@ -15,24 +15,38 @@ const initialValues = {
   estado: '',
 };
 
+const ESTADOS = [
+  { value: '', label: 'Todos' },
+  { value: 'OKM', label: '0 KM' },
+  { value: 'USADO', label: 'Usado' },
+];
+
 export function Filter({ setFiltros, marcasSelect, modelosSelect }) {
   const { register, watch, reset } = useForm({ defaultValues: initialValues });
-  const filtros = watch();
 
+  // Se suscribe a los cambios del form en vez de re-ejecutarse en cada render
   useEffect(() => {
-    const filtrosActivos = Object.fromEntries(
-      Object.entries(filtros).filter(([, value]) => value !== '' && value !== null && value !== undefined)
-    );
-    setFiltros(filtrosActivos);
-  }, [filtros, setFiltros]);
+    const subscription = watch((values) => {
+      const filtrosActivos = Object.fromEntries(
+        Object.entries(values).filter(
+          ([, value]) => value !== '' && value !== null && value !== undefined
+        )
+      );
+      setFiltros(filtrosActivos);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setFiltros]);
 
   return (
     <section className="filter-container">
-      <header>
-        <h2>FILTROS</h2>
+      <header className="filter-header">
+        <h2>Filtros</h2>
+        <button type="button" className="filter-reset" onClick={() => reset(initialValues)}>
+          Resetear
+        </button>
       </header>
 
-      <form>
+      <form className="filter-form" onSubmit={(e) => e.preventDefault()}>
         <SelectField id="marca" label="Marca" register={register}>
           <option value="">Todas</option>
           {marcasSelect.map((marca) => (
@@ -48,18 +62,40 @@ export function Filter({ setFiltros, marcasSelect, modelosSelect }) {
         </SelectField>
 
         <RangeField label="Año" minName="anioMin" maxName="anioMax" register={register} />
-        <RangeField label="Precio" minName="precioMin" maxName="precioMax" register={register} step="0.01" />
+        <RangeField
+          label="Precio"
+          prefix="$"
+          minName="precioMin"
+          maxName="precioMax"
+          register={register}
+          step="0.01"
+        />
 
-        <label htmlFor="kilometrajeMax">Kilometraje máximo</label>
-        <input id="kilometrajeMax" type="number" min="0" {...register('kilometrajeMax')} />
+        <div className="field">
+          <label htmlFor="kilometrajeMax">Kilometraje máximo</label>
+          <div className="input-wrap">
+            <input
+              id="kilometrajeMax"
+              type="number"
+              min="0"
+              placeholder="Ej: 50000"
+              {...register('kilometrajeMax')}
+            />
+            <span className="suffix">km</span>
+          </div>
+        </div>
 
-        <SelectField id="estado" label="Estado" register={register}>
-          <option value="">Todos</option>
-          <option value="OKM">0 KM</option>
-          <option value="USADO">Usado</option>
-        </SelectField>
-
-        <button type="button" onClick={() => reset(initialValues)}>RESETEAR</button>
+        <div className="field">
+          <span className="field-label">Estado</span>
+          <div className="segmented" role="radiogroup" aria-label="Estado">
+            {ESTADOS.map(({ value, label }) => (
+              <label key={label} className="segmented-option">
+                <input type="radio" value={value} {...register('estado')} />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
       </form>
     </section>
   );
@@ -67,7 +103,7 @@ export function Filter({ setFiltros, marcasSelect, modelosSelect }) {
 
 function SelectField({ id, label, register, children }) {
   return (
-    <div className="select-class">
+    <div className="field">
       <label htmlFor={id}>{label}</label>
       <select id={id} {...register(id)}>
         {children}
@@ -76,28 +112,37 @@ function SelectField({ id, label, register, children }) {
   );
 }
 
-function RangeField({ label, minName, maxName, register, step = '1' }) {
+function RangeField({ label, minName, maxName, register, step = '1', prefix }) {
   return (
-    <div className="range-field">
-      <span>{label}</span>
-      <input
-        type="number"
-        min="0"
-        step={step}
-        placeholder="Desde"
-        aria-label={`${label} desde`}
-        {...register(minName)}
-      />
-      <input
-        type="number"
-        min="0"
-        step={step}
-        placeholder="Hasta"
-        aria-label={`${label} hasta`}
-        {...register(maxName)}
-      />
+    <div className="field">
+      <span className="field-label">{label}</span>
+      <div className="range-row">
+        <div className="input-wrap">
+          {prefix && <span className="prefix">{prefix}</span>}
+          <input
+            type="number"
+            min="0"
+            step={step}
+            placeholder="Desde"
+            aria-label={`${label} desde`}
+            className={prefix ? 'has-prefix' : ''}
+            {...register(minName)}
+          />
+        </div>
+        <span className="range-dash">—</span>
+        <div className="input-wrap">
+          {prefix && <span className="prefix">{prefix}</span>}
+          <input
+            type="number"
+            min="0"
+            step={step}
+            placeholder="Hasta"
+            aria-label={`${label} hasta`}
+            className={prefix ? 'has-prefix' : ''}
+            {...register(maxName)}
+          />
+        </div>
+      </div>
     </div>
   );
 }
-
-
