@@ -12,9 +12,9 @@
     font-size: 3rem;
 }
 .admin-page-container p{
-    font-family: "dealership",system-ui;
-    color: #c19f4a;
-    font-weight: 100;
+    font-family: "Montserrat",system-ui;
+    color: #ffffff;
+    font-weight: 300;
 }
 
 .marca-modelo, .admin-page-container button{
@@ -26,7 +26,7 @@
     height: 15vh;
     background-color: #454545;
     font-size: 2rem;
-    font-family: "Stack Sans Headline",sans-serif;
+    font-family: "Montserrat",sans-serif;
     font-weight: 300; 
     transition:background-color 500ms ease-in-out;
 }

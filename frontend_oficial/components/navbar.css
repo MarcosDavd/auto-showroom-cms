@@ -8,6 +8,7 @@ nav{
     color:white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.321);
     background-color: #434b57;
+    z-index: 11;
 }
 ul{
     list-style-type: none;
@@ -17,7 +18,7 @@ ul{
     display: flex;
     box-sizing: border-box;
     padding: 2% 2%;
-    z-index: 4;
+    
     justify-content:space-between;
     align-items: center;
     width: 100%;

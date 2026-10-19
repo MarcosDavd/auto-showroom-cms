@@ -27,6 +27,7 @@ export function CrearAutoClient({ marcas, modelos }) {
         setCarInfo={setCarInfo}/> 
       <CrearAutoForm
         carInfo={carInfo}
+        setCarInfo={setCarInfo}
         marcas={marcas}
         modelos={modelos}
       />
