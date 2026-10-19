@@ -59,6 +59,7 @@ export async function PUT(request) {
             {
                 ok: false,
                 message: 'No se pudo actualizar el auto',
+                error: error instanceof Error ? error.message : String(error),
             },
             { status: 500 }
         );

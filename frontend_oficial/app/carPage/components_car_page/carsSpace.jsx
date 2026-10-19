@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CarTargetComp } from "@/components/car_target_carrousel";
 import "./total-cars.css";
+import { Loader } from "@/components/loader";
 
 const CARS_PER_PAGE = 12;
 
@@ -12,34 +13,7 @@ export function CarsSpace({ filtros }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(false);
-    const lastTrackedSearch = useRef('');
-
-    useEffect(() => {
-        const marca = typeof filtros.marca === 'string' ? filtros.marca.trim() : '';
-        const modelo = typeof filtros.modelo === 'string' ? filtros.modelo.trim() : '';
-
-        if (!marca && !modelo) {
-            lastTrackedSearch.current = '';
-            return;
-        }
-
-        const searchKey = JSON.stringify({ marca, modelo });
-        if (searchKey === lastTrackedSearch.current) return;
-
-        const timeoutId = setTimeout(() => {
-            lastTrackedSearch.current = searchKey;
-            fetch('/api/analytics/busqueda', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ marca, modelo }),
-            }).catch((error) => {
-                console.error('Error registrando búsqueda:', error);
-            });
-        }, 300);
-
-        return () => clearTimeout(timeoutId);
-    }, [filtros.marca, filtros.modelo]);
-
+    
 
     // Cada vez que cambian los filtros,
     // volvemos a la página 1.
@@ -95,7 +69,7 @@ export function CarsSpace({ filtros }) {
 
                 {loading ? (
 
-                    <p>Cargando autos...</p>
+                    <Loader/>
 
                 ) : (
 
@@ -208,7 +182,7 @@ function DividerPagesCars({
 
 
 async function functionQueryCars(filtros, page) {
-
+    
     const params = new URLSearchParams();
 
     // Siempre pedimos 12 autos por página

@@ -2,10 +2,12 @@
     width: 100vw;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     padding: 60px 20px;
     background-color: #1d273d;
+    
 }
 
 .marcas-modelos-forms {
@@ -87,4 +89,32 @@
 .marca-modelo-form button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.volver , .volver-phone{
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    width: 20vw;
+    height: 10vh;
+    background-color: #b99e53;
+    font-size: 2rem;
+    font-family: "Stack Sans Headline",sans-serif;
+    font-weight: 100; 
+    color: white;
+}
+.volver{
+    display: flex;
+}
+.volver-phone{
+    display: none
+}
+
+@media (max-width: 750) {
+    .volver{
+        display: none;
+    }
+    .volver-phone{
+        display: flex;
+    }
 }

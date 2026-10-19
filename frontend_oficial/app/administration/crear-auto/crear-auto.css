@@ -8,6 +8,13 @@
     background-color: #1d273d;
     z-index: 10;
 }
+@media (max-width) {
+    .page-crear-auto{
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}
 
 /*/////CSS FORMUARIO///////*/
 

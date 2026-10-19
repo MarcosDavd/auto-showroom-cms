@@ -19,7 +19,7 @@ export default function LogoutButton({text}) {
 
     return (
         <button onClick={handleLogout} disabled={loading}>
-            {loading ? "Cerrando..." : text}
+            {loading ? "Saliendo..." : text}
         </button>
     );
 }

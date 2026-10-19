@@ -25,7 +25,7 @@ CAR TARG. CARROUSEL CSS
 }
 
 .button-car-carrousel{
-    background-color: #d2b35e;
+    background: linear-gradient(140deg,#ffe17d,#b59839,#af912e,#ccab3d,#ffdf74);
     width: 48px;
     height: 48px;
     border-radius: 100px;
@@ -54,6 +54,195 @@ CAR TARG. CARROUSEL CSS
 CAR TARGET CSS
 ///////////////////////////////////////////////////////////////////////////////*/
 
+/* --- Variables de Color (Para facilitar cambios) --- */
+:root {
+  --bg-card: #1a1a1a;
+  --bg-card-light:#fffefe; /* Gris muy oscuro */
+  --bg-darker: #111111; /* Negro casi total para el hover */
+  --gold-primary: #d2b35e; /* Dorado principal */
+  --gold-soft: #e0c56e; /* Dorado más claro para degradados */
+  --text-main: #ffffff;
+  --text-muted: #aaaaaa;
+  --shadow-card: 0 10px 20px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.8);
+  --transition: all 0.3s ease;
+}
+
+/* --- Contenedor Principal de la Tarjeta --- */
+.car-target {
+  font-family: "Stack Sans Headline", sans-serif;
+  flex: 0 0 300px; /* Ancho fijo como en tu ejemplo */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 480px; /* Un poco más alta para los nuevos detalles */
+  overflow: hidden;
+  border-radius: 12px; /* Bordes redondeados suaves */
+  text-decoration: none; /* Quitar subrayado del link */
+  position: relative;
+  transition: var(--transition);
+  
+  /* Fondo base oscuro */
+  background-color: var(--bg-card);
+  
+  /* Gradiente sutil de fondo para dar profundidad */
+  background-image: linear-gradient(145deg, #222222 0%, #161616 100%);
+  
+  /* Borde fino general dorado */
+  border: 1px solid rgba(194, 158, 37, 0.3);
+  
+  /* Sombra base */
+  box-shadow: var(--shadow-card);
+}
+
+/* --- Efectos Hover --- */
+.car-target:hover {
+  transform: translateY(-10px); /* Levantar la tarjeta */
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(253, 194, 0, 0.8);
+
+}
+
+/* --- Detalle: Línea Dorada Superior (Sustituye al border-top grueso) --- */
+.card-top-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #82671d,#cea32b,#f9bd18,#fde036,#cea32b,#82671d);
+  z-index: 10;
+}
+/*var(--gold-primary), var(--gold-soft), var(--gold-primary)*/
+/* --- Contenedor de Imagen --- */
+.card-image-wrapper {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Degradado oscuro sobre la imagen para que el texto resalte si pones algo encima */
+.card-image-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, var(--bg-card), transparent);
+}
+
+.car-target img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajuste perfecto de imagen */
+  object-position: center;
+  transition: var(--transition);
+}
+
+/* Efecto zoom en la imagen al hacer hover */
+.car-target:hover img {
+  transform: scale(1.05);
+}
+
+/* --- Contenedor de Texto/Contenido --- */
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: space-between; /* Separa header, details y footer */
+}
+
+/* --- Cabecera: Marca, Modelo y Año --- */
+.card-header h2 {
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-transform: uppercase; /* Opcional: Mayúsculas */
+  letter-spacing: 0.5px;
+}
+
+.model-text {
+  font-weight: 300; /* Modelo más fino que la marca */
+  color: var(--text-muted);
+}
+
+.year-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--gold-soft); /* Año en dorado suave */
+  font-weight: 500;
+}
+
+/* --- Detalles: Precio --- */
+.card-details {
+  margin: 15px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 0;
+}
+
+.price-label {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.price-value {
+  font-family: "Montserrat",sans-serif;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--gold-primary); /* Precio grande en dorado */
+}
+
+/* --- Footer: Verificado y Precio Final --- */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.verified-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #4caf50; /* Verde para verificado */
+  background-color: rgba(76, 175, 80, 0.1);
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.final-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* --- Responsive (Manteniendo tu lógica) --- */
+@media (max-width: 600px) {
+  .car-target {
+    flex: 0 0 100%; /* Ocupa ancho completo en móvil */
+    height: auto; /* Altura automática */
+  }
+  
+  .card-image-wrapper {
+      height: 200px;
+  }
+}
+
+
+
+
+/*
 .car-target{
     flex-shrink: 0;
     display: flex;
@@ -61,13 +250,18 @@ CAR TARGET CSS
     scroll-snap-align: start;
     flex-direction: column;
     overflow: hidden;
-    background-color: #fdfdfd;
+    background-color: #000000;
     height: 400px;
     color: rgb(0, 0, 0);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    
+    border: 4px solid #d4af37;
+    border-top: 12px solid #c29e25f4;
     border-radius: 10px;
+
+   
+    position: relative;
     font-family: "Stack Sans Headline", sans-serif;
-    box-shadow: 0 4px 10px rgba(150, 150, 150, 0.5);
+
     transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .car-target:hover{

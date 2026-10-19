@@ -241,3 +241,5 @@ export default async function AdministrationPage({ searchParams }) {
       </main>
   );
 }
+
+

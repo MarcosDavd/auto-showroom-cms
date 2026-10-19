@@ -7,7 +7,8 @@ import { autoSchema } from '@/lib/validations/auto';
 import { ControllerSelectMarca, ControllerSelectModelo, ControllerEstado, InputImages, ControllerInputForm ,ControllerDescripcion} from './componentsAutoForm';
 
 
-export function CrearAutoForm({carInfo, marcas, modelos}) {
+export function CrearAutoForm({carInfo,setCarInfo, marcas, modelos}) {
+  
   const {
     control,
     handleSubmit,
@@ -152,24 +153,12 @@ export function CrearAutoForm({carInfo, marcas, modelos}) {
       </button>
       <button
         type="button"
-        onClick={() =>
-          reset({
-            marca: "",
-            modelo: "",
-            anio: "",
-            kilometraje: "",
-            patente: "",
-            precio: "",
-            estado: "",
-            descripcion: "",
-            images: [],
-          })
-        }
+        onClick={() => resetCar(setCarInfo)}
       >
-        PROBAR RESET
+        Reset
       </button>
-      <button type='button' onClick={() => updateCar(getValues, carInfo,reset)}>Modificar</button>
-      <button type='button' onClick={() => deleteCar(carInfo,reset)}>Eliminar</button>
+      <button type='button' onClick={() => updateCar(getValues, carInfo,setCarInfo)}>Modificar</button>
+      <button type='button' onClick={() => deleteCar(carInfo,setCarInfo)}>Eliminar</button>
     </form>
   );
 }
@@ -182,7 +171,7 @@ function ShowImgsUrl({carInfo}){
                 return  <li key={img}>
                           <p>Imagen {i === 0 ? "Principal" : `#${i}`}</p>
                           <img src={img}></img>
-                          <button onClick={()=>deleteImagesCar(carInfo)}>x</button>
+                          <button onClick={()=>deleteImagesCar(carInfo,img)}>x</button>
                         </li>
                         
               })}
@@ -190,13 +179,15 @@ function ShowImgsUrl({carInfo}){
             
           </section>
 }
-async function updateCar(getValues,carInfo,reset){
-  const data = getValues;
+async function updateCar(getValues,carInfo,setCarInfo){
+  const data = getValues();
+  
+  
   data.precio = parseFloat(data.precio);
   data.kilometraje = parseInt(data.kilometraje);
   data.anio = parseInt(data.anio);
   const response = await fetch(
-        `/api/upload/actualizarAuto?id=${carInfo.id}`,
+        `/api/autos/actualizarAuto?id=${carInfo.id}`,
         {
             method: 'PUT',
             headers: {
@@ -205,22 +196,14 @@ async function updateCar(getValues,carInfo,reset){
             body: JSON.stringify(data)
         }
     );
-    reset({
-            marca: "",
-            modelo: "",
-            anio: "",
-            kilometraje: "",
-            patente: "",
-            precio: "",
-            estado: "",
-            descripcion: "",
-            images: [],
-          })
-    console.log(response)
+    resetCar(setCarInfo)
+    console.log('Status:', response.status);
+    const resultado = await response.json();
+    console.log('Respuesta del servidor:', resultado);
 }
 
-async function deleteCar(carInfo,reset){
-  await deleteImagesCar(carInfo);
+async function deleteCar(carInfo,setCarInfo){
+  //deleteImagesCar(carInfo); solo para cuando piense en como eliminar de cloudinary
   const response = await fetch(
         `/api/autos/eliminarAuto?id=${carInfo.id}`,
         {
@@ -228,7 +211,17 @@ async function deleteCar(carInfo,reset){
         }
     );
     console.log(response)
-    reset({
+    resetCar(setCarInfo)
+}
+
+function deleteImagesCar(carInfo,img){
+  const nuevoArray = carInfo.filter(element => element !== img);
+  carInfo = nuevoArray
+}
+
+function resetCar(setCarInfo){
+  setCarInfo({
+            id:"",
             marca: "",
             modelo: "",
             anio: "",
@@ -237,22 +230,24 @@ async function deleteCar(carInfo,reset){
             precio: "",
             estado: "",
             descripcion: "",
-            images: [],
+            imagenes: [],
+            imagenesId: [],
           })
 }
-async function deleteImagesCar(carInfo) {
-  const params = new URLSearchParams();
-  carInfo.imagenesId.forEach((publicId) => {
-    params.append('publicId', publicId);
-  });
-  const responseImages = await fetch(
-    `/api/upload?${params.toString()}`,
-    {
-        method: 'DELETE'
-    }
-  );
-  console.log(responseImages)
-}
+
+// async function deleteImagesCar(carInfo) {
+//   const params = new URLSearchParams();
+//   carInfo.imagenesId.forEach((publicId) => {
+//     params.append('publicId', publicId);
+//   });
+//   const responseImages = await fetch(
+//     `/api/upload?${params.toString()}`,
+//     {
+//         method: 'DELETE'
+//     }
+//   );
+//   console.log(responseImages)
+// }
 
 
 

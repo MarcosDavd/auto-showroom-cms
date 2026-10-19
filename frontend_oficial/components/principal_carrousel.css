@@ -79,7 +79,7 @@ CSS DEL CARRUSEL
     position: absolute;
     height: 100%;
     width: 135%;
-    background-color: #d2b35e;
+    background:linear-gradient(176deg,#e8ba4f,#d6a727,#765d17);
     z-index: 3;
     animation: open-close 7s cubic-bezier(0, 0, 0, 1.02) infinite;
     /*clip-path: polygon(0 0, 93% 0, 87% 100%, 0% 100%);*/
@@ -88,7 +88,7 @@ CSS DEL CARRUSEL
 }
 .curtain-decorator{
     position: absolute;
-    background-color: #d2b35e;
+    background:linear-gradient(176deg,#e8ba4f,#d6a727,#765d17);
     height: 100%;
     width: 100%;
     clip-path: polygon(11% 0, 13% 0, 0% 100%, 0% 100%);
